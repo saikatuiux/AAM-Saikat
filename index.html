@@ -2138,6 +2138,87 @@
       color: var(--on-dark);
       border-color: var(--on-dark);
     }
+
+    /* Booking & Calendly Modal */
+    .booking-modal-card {
+      max-width: 780px;
+      padding: 2rem;
+    }
+    .booking-modal-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed var(--line-on-dark);
+      margin-bottom: 1.5rem;
+      padding-right: 3rem;
+    }
+    .booking-kicker {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #34d399;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .booking-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      color: var(--on-dark);
+      margin: 0;
+    }
+    .booking-desc {
+      font-size: 0.875rem;
+      color: var(--on-dark-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .booking-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+    }
+    .booking-meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.25rem 0.6rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px dashed var(--line-on-dark);
+      color: var(--on-dark-muted);
+      border-radius: 2px;
+    }
+    .booking-embed-frame {
+      width: 100%;
+      height: 480px;
+      border: 1px solid var(--line-on-dark);
+      background: #ffffff;
+      border-radius: 4px;
+    }
+    .booking-fallback-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px dashed var(--line-on-dark);
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      color: var(--on-dark-muted);
+    }
+    @media (min-width: 640px) {
+      .booking-fallback-bar {
+        flex-direction: row;
+      }
+    }
+
     .modal-cat-tag {
       font-size: 0.6875rem;
       text-transform: uppercase;
@@ -3316,7 +3397,7 @@
 
       <div class="sidebar-status-pill">
         <span class="badge-pulse" aria-hidden="true"></span>
-        <span>Available for Q2/Q3 Design Sprints</span>
+        <span>Open to new roles &amp; projects · Remote-friendly</span>
       </div>
     </div>
 
@@ -3327,7 +3408,7 @@
         <h2 class="sidebar-heading-title">Showcase Archetypes</h2>
       </div>
 
-      <!-- Archetype Filter Navigation Tabs -->
+      <!-- Archetype Filter Navigation Tabs (1: SaaS, 2: Dashboards, 3: Fintech & Banking, 4: Landing Pages, 5: App Design) -->
       <nav class="sidebar-archetype-nav" role="tablist" aria-label="Filter works by archetype">
         <button class="category-btn" data-filter="saas" role="tab" aria-selected="false">
           <span class="cat-indicator" aria-hidden="true"></span>
@@ -3337,6 +3418,11 @@
         <button class="category-btn" data-filter="dashboard" role="tab" aria-selected="false">
           <span class="cat-indicator" aria-hidden="true"></span>
           <span class="cat-name">Dashboards</span>
+          <span class="cat-count">3</span>
+        </button>
+        <button class="category-btn" data-filter="fintech" role="tab" aria-selected="false">
+          <span class="cat-indicator" aria-hidden="true"></span>
+          <span class="cat-name">Fintech &amp; Banking</span>
           <span class="cat-count">3</span>
         </button>
         <button class="category-btn" data-filter="landing-page" role="tab" aria-selected="false">
@@ -3400,7 +3486,7 @@
   <button class="mobile-archetype-trigger" id="mobile-archetype-trigger" aria-label="Open Showcase Archetypes Sidebar">
     <span class="trigger-diamond" aria-hidden="true"></span>
     <span>Showcase Archetypes</span>
-    <span class="trigger-count">10</span>
+    <span class="trigger-count">13</span>
   </button>
 
   <!-- Main Site Wrapper (Offset for full-height left sidebar on desktop) -->
@@ -3449,8 +3535,8 @@
             <a href="#works" class="cta-btn solid-light">
               See my work <span class="arrow" aria-hidden="true">→</span>
             </a>
-            <a href="#contact" class="cta-btn ghost-light">
-              Schedule Intro Call <span class="arrow" aria-hidden="true">→</span>
+            <a href="https://calendly.com/aamsaikat-ux/20min" target="_blank" rel="noopener noreferrer" class="cta-btn ghost-light book-call-trigger" id="hero-book-call-btn" title="Book a 20-min call on Calendly">
+              Book a 20-min call <span class="arrow" aria-hidden="true">→</span>
             </a>
           </div>
 
@@ -3503,7 +3589,7 @@
             </div>
             <h2 class="about-heading" data-motion="line" data-stagger="90">
               <span class="line-mask"><span class="line-inner">12+ years designing products</span></span>
-              <span class="line-mask"><span class="line-inner">that scale to millions.</span></span>
+              <span class="line-mask"><span class="line-inner">that people actually finish using.</span></span>
             </h2>
 
             <!-- 2 CTA Buttons directly under heading -->
@@ -3548,15 +3634,15 @@
           </div>
           <div class="fact-item">
             <dt>Leadership Level</dt>
-            <dd>Lead UI/UX Designer</dd>
+            <dd>Lead UX / Mentor</dd>
           </div>
           <div class="fact-item">
             <dt>Core Competency</dt>
-            <dd>Enterprise SaaS, Design Systems &amp; AI UX</dd>
+            <dd>Fintech, SaaS, Design Systems &amp; AI UX</dd>
           </div>
           <div class="fact-item">
             <dt>Commercial Impact</dt>
-            <dd>40+ Products · $180M+ ARR Influenced</dd>
+            <dd>40+ Products · 500K+ users · 63% onboarding lift</dd>
           </div>
         </dl>
       </div>
@@ -3863,21 +3949,20 @@
           <!-- Left: Narrative & Value Proposition -->
           <div class="cta-intro-col">
             <h2 class="cta-headline motion-fade-up" data-motion="fade-up">
-              Ready to scale product UX with 12+ years of design leadership?
+              Hiring a designer or fixing a product? Let’s talk.
             </h2>
             <p class="cta-description motion-fade-up" data-motion="fade-up" data-delay="100">
-              Whether you are an executive recruiter seeking a seasoned Lead UI/UX Designer to anchor your product organization, a venture-backed scale-up modernizing your multi-brand design systems, or a founder launching a flagship SaaS experience — let's review your product roadmap, team structure, and target impact.
+              Whether you are an executive recruiter seeking a Lead UX Designer to anchor your product organization, or a founder launching a flagship SaaS experience, let's review your product roadmap, team structure, and target impact.
             </p>
           </div>
 
           <!-- Right: Interactive Actions Card -->
           <div class="cta-actions-card motion-fade-up" data-motion="fade-up" data-delay="200">
-            <h3 class="cta-actions-card-title">Initiate A Conversation</h3>
-            <p class="cta-actions-card-sub">Direct access to Lead Designer · Zero agency middle-layers.</p>
+            <h3 class="cta-actions-card-title">Get in touch</h3>
 
             <div class="cta-actions-btn-group">
-              <a href="mailto:saikat@aamsaikat.ux?subject=Strategic%20Briefing%20%7C%20Lead%20UI%2FUX%20Designer%20Inquiry" class="cta-btn solid-dark" style="flex: 1; justify-content: center;">
-                <span>Schedule Intro Call</span>
+              <a href="https://calendly.com/aamsaikat-ux/20min" target="_blank" rel="noopener noreferrer" class="cta-btn solid-dark book-call-trigger" id="contact-book-call-btn" style="flex: 1; justify-content: center;" title="Book a 20-min call on Calendly">
+                <span>Book a 20-min call</span>
                 <span class="arrow" aria-hidden="true">→</span>
               </a>
               <button type="button" class="cta-copy-btn" id="cta-copy-email-btn" title="Copy email address to clipboard">
@@ -3888,7 +3973,7 @@
 
             <p class="cta-direct-note">
               <span style="color: #34d399;" aria-hidden="true">●</span>
-              <span>Guaranteed response within 24 hours · US, EU &amp; APAC timezones</span>
+              <span>Tell me about your role or product. I reply within one business day.</span>
             </p>
           </div>
         </div>
@@ -4339,6 +4424,108 @@
         </div>
       </article>
 
+      <!-- 11: FinCore Digital Banking Platform (Fintech - Core Banking) -->
+      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="FinCore Digital Banking Suite" data-client="FinCore Global Bank" data-year="2025" data-roi="+38% Task Velocity" data-cat-label="Fintech · Enterprise Core Banking" data-challenge="Legacy retail and corporate banking portals suffered from fragmented accounts, complex wire approval chains, and unintuitive multi-currency wallets." data-solution="Architected a unified digital banking experience with real-time liquidity trends, automated card issuance, tiered approval workflows, and audit-ready accounting ledgers." data-tech="React · TypeScript · Tailwind CSS · Chart.js · Financial Design Tokens">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/fintech_banking_core_1791906391305.jpg" alt="FinCore Digital Banking Suite — Core Banking & Cashflow Management" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-category-pill">Fintech · Core Banking</span>
+              <span class="work-roi-pill">+38% Velocity</span>
+              <span class="work-roi-pill metric-success-pill">Instant Multi-Currency</span>
+            </div>
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for FinCore Digital Banking Suite">
+              <span>Brief</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">FinCore Digital Banking Suite</h2>
+              <p class="work-medium">Enterprise Cashflow, Multi-Currency Wallets &amp; Virtual Card Issuance</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <p class="showcase-item-desc">Enterprise core banking portal serving modern businesses and high-net-worth customers. Consolidates global USD/EUR/GBP treasury balances, dynamic cashflow projections, and instant virtual debit card issuance into a unified, zero-friction interface.</p>
+          <div class="showcase-footer-line">
+            <div class="showcase-stack-tag">React · TypeScript · Tailwind CSS · Financial Design Tokens</div>
+            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Core Banking Platform</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12: AuraPay Mobile Financial Services (MFS) Wallet -->
+      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="AuraPay Mobile Financial Ecosystem" data-client="Aura Telecom &amp; Fintech" data-year="2025" data-roi="12M+ Active Wallets" data-cat-label="Fintech · Mobile Financial Services (MFS)" data-challenge="First-time mobile money and unbanked users faced cognitive overload and high transaction drop-off with QR scanning, merchant payments, and micro-savings." data-solution="Engineered an inclusive, ergonomic mobile wallet with 1-tap P2P transfers, high-contrast QR merchant checkout, biometric security verification, and automated micro-savings yield vaults." data-tech="React Native · SwiftUI · Kotlin · Micro-Interactions · Biometrics API">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/mfs_mobile_wallet_1791906391496.jpg" alt="AuraPay Mobile Financial Ecosystem — MFS App & QR Payments" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-category-pill">Fintech · MFS &amp; Mobile Wallet</span>
+              <span class="work-roi-pill">12M+ Users</span>
+              <span class="work-roi-pill metric-success-pill">1-Tap P2P Transfers</span>
+            </div>
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for AuraPay Mobile Financial Ecosystem">
+              <span>Brief</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">AuraPay Mobile Financial Ecosystem</h2>
+              <p class="work-medium">Next-Gen MFS Wallet, Instant P2P Transfers &amp; QR Payments</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <p class="showcase-item-desc">High-scale mobile financial services (MFS) application empowering millions with seamless digital payments. Features thumb-zone optimized QR merchant pay, contactless tap, peer-to-peer transfers, and high-yield micro-investment vaults with biometric authentication.</p>
+          <div class="showcase-footer-line">
+            <div class="showcase-stack-tag">React Native · iOS SwiftUI · Kotlin · Biometrics API</div>
+            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Mobile Financial Services</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 13: PayFast Developer Payment Gateway & Orchestrator -->
+      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="PayFast Multi-Rail Payment Gateway" data-client="PayFast Global Infrastructure" data-year="2024" data-roi="99.4% Auth Rate" data-cat-label="Fintech · Payment Gateway &amp; Orchestration" data-challenge="Merchants experienced payment churn, steep cross-border interchange fees, and rigid checkout interfaces that failed on mobile devices." data-solution="Created an intelligent payment orchestration portal featuring visual multi-rail routing (Stripe, Adyen, local APMs), conversion-boosted embeddable checkout sheets, and real-time fraud scoring telemetry." data-tech="TypeScript · Next.js · Canvas Visualizer · Webhooks · PCI-DSS Compliant UI">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/payment_gateway_checkout_1791906391666.jpg" alt="PayFast Multi-Rail Payment Gateway — Merchant Checkout & Routing" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-category-pill">Fintech · Payment Gateway</span>
+              <span class="work-roi-pill">99.4% Auth Rate</span>
+              <span class="work-roi-pill metric-success-pill">-15% Fee Reduction</span>
+            </div>
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for PayFast Multi-Rail Payment Gateway">
+              <span>Brief</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">PayFast Multi-Rail Gateway &amp; Orchestrator</h2>
+              <p class="work-medium">Smart Multi-Rail Routing, Embeddable Checkout &amp; Fraud Telemetry</p>
+            </div>
+            <span class="showcase-item-year">2024</span>
+          </div>
+          <p class="showcase-item-desc">Developer-first payment gateway management and merchant checkout architecture. Empowers e-commerce platforms to dynamically route transactions between global processors, lower payment decline rates, and render high-converting embeddable payment sheets.</p>
+          <div class="showcase-footer-line">
+            <div class="showcase-stack-tag">TypeScript · Next.js · Multi-Rail Routing · PCI-DSS UI</div>
+            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Payment Orchestration</span>
+          </div>
+        </div>
+      </article>
+
     </div> <!-- /#showcase-feed -->
 
     <!-- Empty State if filtered out -->
@@ -4416,7 +4603,7 @@
             <img src="/src/assets/images/saikat_hero_portrait_1791101144249.jpg" alt="AAM Saikat — Lead UI/UX Designer" loading="lazy" referrerpolicy="no-referrer" />
             <div class="profile-verified-badge">
               <span class="badge-pulse" aria-hidden="true"></span>
-              <span>Available for Q2/Q3 Sprints</span>
+              <span>Open to new roles &amp; projects · Remote-friendly</span>
             </div>
           </div>
         </div>
@@ -4921,6 +5108,51 @@
       </div>
     </div>
   </div>
+
+  <!-- Interactive 20-min Call Booking Modal (Calendly Embedded Scheduler) -->
+  <div class="brief-modal-backdrop" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modal-booking-title" aria-hidden="true">
+    <div class="brief-modal-card booking-modal-card">
+      <button class="brief-modal-close" id="booking-modal-close" aria-label="Close scheduling modal">Close ✕</button>
+      
+      <div class="booking-modal-header">
+        <span class="booking-kicker">
+          <span class="badge-pulse" aria-hidden="true"></span>
+          <span>Direct Calendly Scheduling</span>
+        </span>
+        <h3 class="booking-title" id="modal-booking-title">Book a 20-min Intro Call</h3>
+        <p class="booking-desc">Pick a date &amp; time that works best across US, European, or APAC timezones. Let's discuss your product roadmap, design system, or team leadership needs.</p>
+        
+        <div class="booking-pill-row">
+          <span class="booking-meta-pill">⏱ 20 Minutes</span>
+          <span class="booking-meta-pill">📍 Google Meet / Zoom</span>
+          <span class="booking-meta-pill">👤 1-on-1 with AAM Saikat</span>
+        </div>
+      </div>
+
+      <!-- Embedded Calendly Iframe -->
+      <div class="booking-embed-container">
+        <iframe
+          id="booking-calendly-iframe"
+          class="booking-embed-frame"
+          src="https://calendly.com/aamsaikat-ux/20min?embed_domain=localhost&embed_type=Inline&hide_landing_page_details=1&hide_gdpr_banner=1"
+          title="Schedule 20-Min Intro Call with AAM Saikat"
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="booking-fallback-bar">
+        <span>Prefer direct link? Open outside modal:</span>
+        <div style="display: flex; gap: 0.75rem; align-items: center;">
+          <a href="https://calendly.com/aamsaikat-ux/20min" target="_blank" rel="noopener noreferrer" class="cta-btn solid-dark" style="padding: 0.5rem 1rem; font-size: 0.75rem;">
+            Open on Calendly.com ↗
+          </a>
+          <a href="mailto:saikat@aamsaikat.ux?subject=20-Min%20Intro%20Call%20Request" class="cta-btn ghost-dark" style="padding: 0.5rem 1rem; font-size: 0.75rem;">
+            Email Directly
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Script: Lenis & Motion Engine -->
   <script type="module">
     import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.3.19/+esm";
@@ -5258,8 +5490,8 @@
       'all': {
         title: 'All Architecture Archetypes',
         kicker: 'Showcase Feed · Flagship Works',
-        count: '10 Verified Projects',
-        desc: 'Curated collection of 10 enterprise platforms, high-throughput cockpits, editorial landing pages, and native mobile companions engineered for ROI.'
+        count: '13 Verified Projects',
+        desc: 'Curated collection of 13 enterprise platforms, high-throughput cockpits, fintech banking suites, editorial landing pages, and native mobile companions engineered for ROI.'
       },
       'saas': {
         title: 'SaaS Platforms',
@@ -5273,15 +5505,21 @@
         count: '3 Executive Cockpits',
         desc: 'Low-latency observability terminals, algorithmic trading cockpits, and distributed systems monitoring handling real-time data streaming.'
       },
+      'fintech': {
+        title: 'Fintech, Banking & MFS',
+        kicker: 'Archetype 03 · Financial Infrastructure & Payments',
+        count: '3 Verified Platforms',
+        desc: 'Next-generation digital banking suites, high-scale Mobile Financial Services (MFS) wallets, and intelligent multi-rail developer payment gateways with friction-free checkout.'
+      },
       'landing-page': {
         title: 'Editorial Landing Pages',
-        kicker: 'Archetype 03 · High-Conversion Digital Presence',
+        kicker: 'Archetype 04 · High-Conversion Digital Presence',
         count: '2 Flagship Experiences',
         desc: 'Tactile editorial web experiences and launchpads combining WebGL micro-interactions, dark-mode elegance, and high conversion velocity.'
       },
       'app-design': {
         title: 'Mobile App Design',
-        kicker: 'Archetype 04 · Native iOS & Android Systems',
+        kicker: 'Archetype 05 · Native iOS & Android Systems',
         count: '2 Mobile Products',
         desc: 'Mobile-first fintech wealth companions and on-the-go generative AI production suites built with ergonomic thumb-reach flows.'
       }
@@ -5698,10 +5936,46 @@
     }
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && briefModal && briefModal.classList.contains('is-active')) {
-        closeBriefModal();
+      if (e.key === 'Escape') {
+        if (briefModal && briefModal.classList.contains('is-active')) closeBriefModal();
+        if (bookingModal && bookingModal.classList.contains('is-active')) closeBookingModal();
       }
     });
+
+    // 11b. Interactive 20-min Call Booking Modal Controller (Calendly Integration)
+    const bookingModal = document.getElementById('booking-modal');
+    const bookingModalClose = document.getElementById('booking-modal-close');
+
+    function openBookingModal(e) {
+      if (e) e.preventDefault();
+      if (!bookingModal) return;
+      bookingModal.classList.add('is-active');
+      bookingModal.setAttribute('aria-hidden', 'false');
+      if (lenis) lenis.stop();
+      document.documentElement.style.overflow = 'hidden';
+    }
+
+    function closeBookingModal() {
+      if (!bookingModal) return;
+      bookingModal.classList.remove('is-active');
+      bookingModal.setAttribute('aria-hidden', 'true');
+      if (lenis) lenis.start();
+      document.documentElement.style.overflow = '';
+    }
+
+    // Attach click events to all "Book a 20-min call" trigger links
+    document.querySelectorAll('.book-call-trigger').forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        openBookingModal(e);
+      });
+    });
+
+    if (bookingModalClose) bookingModalClose.addEventListener('click', closeBookingModal);
+    if (bookingModal) {
+      bookingModal.addEventListener('click', (e) => {
+        if (e.target === bookingModal) closeBookingModal();
+      });
+    }
 
     // Copy Email to Clipboard in Pre-Footer CTA
     const copyEmailBtn = document.getElementById('cta-copy-email-btn');
