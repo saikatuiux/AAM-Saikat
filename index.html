@@ -595,7 +595,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 10%;
+      object-position: center 15%;
       filter: grayscale(100%) brightness(0.72) contrast(1.05);
       opacity: 0.68;
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease, opacity 0.35s ease;
@@ -1376,9 +1376,17 @@
       flex-direction: column;
       gap: 1.75rem;
       transition: opacity 0.35s ease, transform 0.35s ease;
+      padding-bottom: 2rem;
+      border-bottom: 1px dashed var(--line);
     }
     .showcase-stacked-item.is-hidden {
       display: none !important;
+    }
+    .showcase-caption-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      order: 1;
     }
     .showcase-figure-wrap {
       width: 100%;
@@ -1386,6 +1394,7 @@
       overflow: hidden;
       border: 1px dashed var(--line);
       background: var(--surface-grey);
+      order: 2;
     }
     .showcase-figure-wrap .ratio-box {
       width: 100%;
@@ -1404,14 +1413,6 @@
     }
     .showcase-stacked-item:hover .showcase-figure-wrap img {
       transform: scale(1.025);
-    }
-
-    .showcase-caption-block {
-      border-top: 1px dashed var(--line);
-      padding-top: 1.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
     }
     .showcase-tags-line {
       display: flex;
@@ -2042,26 +2043,97 @@
       opacity: 0.8;
       letter-spacing: 0.04em;
     }
+    .showcase-actions-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
     .quick-brief-btn {
       background: transparent;
       border: 1px dashed var(--line);
       color: var(--ink);
       font-size: 0.6875rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.35rem 0.65rem;
+      letter-spacing: 0.08em;
+      padding: 0.42rem 0.85rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       white-space: nowrap;
       font-weight: 500;
+      line-height: 1.2;
+      border-radius: 2px;
     }
     .quick-brief-btn:hover {
       border-color: var(--ink);
       color: var(--ink);
       background: var(--surface-grey);
+      transform: translateY(-1px);
+    }
+    .showcase-action-link {
+      background: #141413;
+      border: 1px solid #141413;
+      color: #ffffff !important;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.42rem 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 1.2;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    .showcase-action-link:hover {
+      background: #2a2a28;
+      color: #ffffff !important;
+      border-color: #2a2a28;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    }
+    /* In dark mode, ensure View in Figma has crisp white pill with dark text or distinct high contrast */
+    [data-theme="dark"] .showcase-action-link,
+    :root:not([data-theme="light"]) .showcase-action-link {
+      background: #f7f7f5;
+      border: 1px solid #f7f7f5;
+      color: #0c0c0b !important;
+    }
+    [data-theme="dark"] .showcase-action-link:hover,
+    :root:not([data-theme="light"]) .showcase-action-link:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: #000000 !important;
+    }
+    /* Distinct accent for View Prototype */
+    .showcase-action-link.action-proto {
+      background: rgba(16, 185, 129, 0.12) !important;
+      border: 1px solid rgba(52, 211, 153, 0.5) !important;
+      color: #059669 !important;
+    }
+    [data-theme="dark"] .showcase-action-link.action-proto,
+    :root:not([data-theme="light"]) .showcase-action-link.action-proto {
+      color: #34d399 !important;
+      border-color: rgba(52, 211, 153, 0.5) !important;
+      background: rgba(16, 185, 129, 0.14) !important;
+    }
+    .showcase-action-link.action-proto:hover,
+    [data-theme="dark"] .showcase-action-link.action-proto:hover,
+    :root:not([data-theme="light"]) .showcase-action-link.action-proto:hover {
+      background: #10b981 !important;
+      color: #ffffff !important;
+      border-color: #10b981 !important;
+    }
+    .showcase-action-link svg {
+      flex-shrink: 0;
     }
 
     /* Works Empty State */
@@ -2705,23 +2777,38 @@
       border-top: 1px dashed var(--line);
       padding-block: 1.5rem;
       display: flex;
-      align-items: baseline;
+      align-items: flex-start;
       gap: 1.25rem;
     }
     .exhibition-num {
       font-family: "Space Grotesk", sans-serif;
       font-size: 0.875rem;
       color: var(--ink-muted);
+      line-height: 1.35;
+      padding-top: 0.15rem;
+      flex-shrink: 0;
+    }
+    .exhibition-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }
     .exhibition-name {
       font-family: "Space Grotesk", sans-serif;
       font-size: 1.25rem;
       color: var(--ink);
+      line-height: 1.2;
     }
     @media (min-width: 1024px) {
       .exhibition-name {
-        font-size: 1.5rem;
+        font-size: 1.375rem;
       }
+    }
+    .exhibition-desc {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      margin: 0;
     }
 
     /* FAQ Section */
@@ -3501,11 +3588,11 @@
       <!-- Background Media: Portrait Positioned to the Right Side -->
       <div class="hero-bg-media motion-fade" data-motion="fade" data-delay="150" aria-hidden="true">
         <img
-          src="/src/assets/images/saikat_hero_monochrome_1791830202596.jpg"
+          src="/src/assets/images/aa-mahmud.jpg"
           alt="AA Mahmud — Lead UI/UX Designer &amp; Product Leader"
           class="hero-bg-img"
-          width="810"
-          height="1080"
+          width="1368"
+          height="2048"
           fetchpriority="high"
           referrerpolicy="no-referrer"
         />
@@ -3521,7 +3608,7 @@
           </div>
 
           <div class="hero-sub-eyebrow motion-fade" data-motion="fade" data-delay="150">
-            <span class="hero-focus-pill">Design Systems · ROI · AI-Native UX</span>
+            <span class="hero-focus-pill">Design Systems · ROI · AI-Strategist</span>
           </div>
 
           <h1 class="hero-title" data-motion="line" data-stagger="140">
@@ -3813,55 +3900,94 @@
         <ul class="exhibitions-grid">
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="0" data-stagger="80">
             <span class="exhibition-num">01</span>
-            <span class="exhibition-name">SSLCOMMERZ</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">SSLCOMMERZ</span>
+              <p class="exhibition-desc">Bangladesh #1 payment gateway &amp; fintech merchant ecosystem</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="1" data-stagger="80">
             <span class="exhibition-num">02</span>
-            <span class="exhibition-name">GloryDale</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">GloryDale</span>
+              <p class="exhibition-desc">Integrated EPOS system software &amp; hospitality retail terminals</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="2" data-stagger="80">
             <span class="exhibition-num">03</span>
-            <span class="exhibition-name">Algocyte</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">Algocyte</span>
+              <p class="exhibition-desc">Oxford Immune Algorithmics · Precision AI health monitoring</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="0" data-stagger="80">
             <span class="exhibition-num">04</span>
-            <span class="exhibition-name">Othership</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">Othership</span>
+              <p class="exhibition-desc">Hybrid work station management &amp; distributed desk booking system</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="1" data-stagger="80">
             <span class="exhibition-num">05</span>
-            <span class="exhibition-name">Collably</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">Collably</span>
+              <p class="exhibition-desc">Collaborative team workspace &amp; agile workflow synchronization</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="2" data-stagger="80">
             <span class="exhibition-num">06</span>
-            <span class="exhibition-name">Caboodle</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">Caboodle</span>
+              <p class="exhibition-desc">All-in-one resource pooling &amp; enterprise logistics platform</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="0" data-stagger="80">
             <span class="exhibition-num">07</span>
-            <span class="exhibition-name">DocomateAI</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">DocomateAI</span>
+              <p class="exhibition-desc">Intelligent legal and medical document automation with LLM agents</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="1" data-stagger="80">
             <span class="exhibition-num">08</span>
-            <span class="exhibition-name">Gain Health</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">Gain Health</span>
+              <p class="exhibition-desc">Digital therapeutics, preventative care &amp; patient clinical portal</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="2" data-stagger="80">
             <span class="exhibition-num">09</span>
-            <span class="exhibition-name">Transcom Digital</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">Transcom Digital</span>
+              <p class="exhibition-desc">Premier consumer electronics &amp; omnichannel retail e-commerce</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="0" data-stagger="80">
             <span class="exhibition-num">10</span>
-            <span class="exhibition-name">Apex4U</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">Apex4U</span>
+              <p class="exhibition-desc">Footwear &amp; lifestyle flagship mobile loyalty shopping app</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="1" data-stagger="80">
             <span class="exhibition-num">11</span>
-            <span class="exhibition-name">BAIC Bank</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">BAISC Bank</span>
+              <p class="exhibition-desc">Commercial banking core, treasury analytics &amp; mobile transfers</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="2" data-stagger="80">
             <span class="exhibition-num">12</span>
-            <span class="exhibition-name">AI Mail</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">AI Mail</span>
+              <p class="exhibition-desc">Autonomous generative email client with intelligent triage triage</p>
+            </div>
           </li>
           <li class="exhibition-item motion-fade-up" data-motion="fade-up" data-col-index="0" data-stagger="80">
             <span class="exhibition-num">13</span>
-            <span class="exhibition-name">Exlo</span>
+            <div class="exhibition-content">
+              <span class="exhibition-name">Exlo</span>
+              <p class="exhibition-desc">Next-gen enterprise asset tracking &amp; cross-border freight suite</p>
+            </div>
           </li>
         </ul>
       </div>
@@ -4058,12 +4184,14 @@
     <!-- Showcase View Header -->
     <div class="showcase-view-header">
       <div class="showcase-breadcrumb-row">
-        <button class="showcase-back-btn" id="showcase-back-home-btn" type="button" aria-label="Return to AA Mahmud Home">
-          <span aria-hidden="true">←</span>
-          <span>Back to Home Overview</span>
+        <button class="showcase-back-btn showcase-next-cat-btn" id="showcase-next-cat-btn" type="button" aria-label="View Next Architecture Archetype">
+          <span>View Dashboards</span>
+          <span aria-hidden="true">→</span>
         </button>
-        
-        <div class="showcase-meta-badge" id="showcase-category-count" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink); font-weight: 500; border: 1px dashed var(--line); padding: 0.35rem 0.75rem; border-radius: 2px;">3 Flagship Platforms</div>
+        <button class="showcase-back-btn showcase-home-link-btn" id="showcase-back-home-btn" type="button" aria-label="Return to AA Mahmud Home" style="opacity: 0.75; font-size: 0.6875rem;">
+          <span aria-hidden="true">←</span>
+          <span>Home Overview</span>
+        </button>
       </div>
 
       <div class="eyebrow" style="margin-top: 1rem;">
@@ -4091,14 +4219,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">SaaS Platform · AI Video Diffusion</span>
               <span class="work-roi-pill">+140% Retention</span>
               <span class="work-roi-pill metric-success-pill">Sub-42% Latency</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for CineGraph AI Studio">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for CineGraph AI Studio">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for CineGraph AI Studio">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for CineGraph AI Studio">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4108,10 +4245,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Architected complete node-graph interface for generative video diffusion models, translating non-deterministic latencies into real-time feedback loops. Reduced timeline rendering latency by 42% and elevated creator retention by 140%.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">React · WebGL · Next.js · Canvas API · Storybook</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Series B · Video Gen</span>
-          </div>
         </div>
       </article>
 
@@ -4125,14 +4258,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">SaaS Platform · Agent Workflow</span>
               <span class="work-roi-pill">+3.4x Velocity</span>
               <span class="work-roi-pill metric-success-pill">0-Latency Sync</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for Nexus Flow Pipeline Builder">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Nexus Flow Pipeline Builder">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Nexus Flow Pipeline Builder">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Nexus Flow Pipeline Builder">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4142,10 +4284,6 @@
             <span class="showcase-item-year">2024</span>
           </div>
           <p class="showcase-item-desc">Designed scalable drag-and-drop orchestration canvas for autonomous agent swarms, integrating real-time telemetry, conditional logic branching, and zero-latency state synchronization across enterprise teams.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">TypeScript · React Flow · Tailwind CSS · WebSockets</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Enterprise B2B · Multi-Agent</span>
-          </div>
         </div>
       </article>
 
@@ -4159,14 +4297,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">SaaS Platform · Design Infrastructure</span>
               <span class="work-roi-pill">-68% Dev Overhead</span>
               <span class="work-roi-pill metric-success-pill">100% Token Sync</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for HyperScale Core Design Platform">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for HyperScale Core Design Platform">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for HyperScale Core Design Platform">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for HyperScale Core Design Platform">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4176,10 +4323,6 @@
             <span class="showcase-item-year">2024</span>
           </div>
           <p class="showcase-item-desc">Unified 12 federated engineering teams into a single automated design tokens engine. Programmatic synchronization across Figma, React, and mobile native runtimes reduced front-end regression bug tickets by 68%.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">React · Design Tokens · Figma API · Tailwind · Monorepo</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Design Systems · Architecture</span>
-          </div>
         </div>
       </article>
 
@@ -4193,14 +4336,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">Dashboard · Telemetry Analytics</span>
               <span class="work-roi-pill">Sub-32ms Latency</span>
               <span class="work-roi-pill metric-success-pill">450k Events/s</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for OmniMetrics Telemetry Cockpit">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for OmniMetrics Telemetry Cockpit">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for OmniMetrics Telemetry Cockpit">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for OmniMetrics Telemetry Cockpit">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4210,10 +4362,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">High-density dark-mode telemetry cockpit processing over 450,000 events/sec. Utilized virtualized charts, progressive level-of-detail data decimation, and predictive incident alert triage.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">React · D3.js · WebGL Shaders · TypeScript · Web Workers</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Enterprise Observability · Realtime</span>
-          </div>
         </div>
       </article>
 
@@ -4227,14 +4375,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">Dashboard · Financial Intelligence</span>
               <span class="work-roi-pill">+84% ARR Visibility</span>
               <span class="work-roi-pill metric-success-pill">-60% Rebalance Time</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for FinPulse Algorithmic Growth Cockpit">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for FinPulse Algorithmic Growth Cockpit">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for FinPulse Algorithmic Growth Cockpit">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for FinPulse Algorithmic Growth Cockpit">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4244,10 +4401,6 @@
             <span class="showcase-item-year">2024</span>
           </div>
           <p class="showcase-item-desc">High-throughput financial modeling workstation tailored for quantitative portfolio managers. Streamlined multi-tier portfolio rebalancing workflows and reduced trade execution cycle time by 60%.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">Next.js · Highcharts · WebSocket · Tailwind CSS</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Quantitative Finance · Web Terminal</span>
-          </div>
         </div>
       </article>
 
@@ -4261,14 +4414,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">Dashboard · AI Systems Monitoring</span>
               <span class="work-roi-pill">99.98% Uptime</span>
               <span class="work-roi-pill metric-success-pill">Cost Guardrails</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for Synapse Autonomous Agent Telemetry">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Synapse Autonomous Agent Telemetry">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Synapse Autonomous Agent Telemetry">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Synapse Autonomous Agent Telemetry">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4278,10 +4440,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Real-time health, token consumption, and cost observability terminal for LLM clusters. Visualized agent reasoning trails, fallback triggers, and unit economics with sub-second responsiveness.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">React · WebGL · D3.js · Tailwind · Server-Sent Events</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Autonomous Systems · LLM Ops</span>
-          </div>
         </div>
       </article>
 
@@ -4295,14 +4453,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">Landing Page · Editorial Web Presence</span>
               <span class="work-roi-pill">+128% Conversion</span>
               <span class="work-roi-pill metric-success-pill">60 FPS WebGL</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for Lumina Generative Studio Web Presence">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Lumina Generative Studio Web Presence">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Lumina Generative Studio Web Presence">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Lumina Generative Studio Web Presence">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4312,10 +4479,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Editorial dark-mode product showcase designed to convert venture enterprise leads. Integrated WebGL particle physics, micro-interactions, and high-velocity storytelling that lifted demo requests by 128%.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">Three.js · GSAP · Lenis · Next.js · CSS Variables</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Creative Studio · Editorial</span>
-          </div>
         </div>
       </article>
 
@@ -4329,14 +4492,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">Landing Page · Product Launch</span>
               <span class="work-roi-pill">+45k Waitlist</span>
               <span class="work-roi-pill metric-success-pill">Sub-1s LCP</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for Aurora Intelligence Cloud Launchpad">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Aurora Intelligence Cloud Launchpad">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Aurora Intelligence Cloud Launchpad">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Aurora Intelligence Cloud Launchpad">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4346,10 +4518,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Developer-focused landing page for next-gen data intelligence and workflow synchronization. Features interactive code playground embeds, live benchmark comparisons, and instant API token provisioning.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">Vite · Tailwind CSS · Lucide · Framer Motion · WebGL</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Developer Tools · Cloud AI</span>
-          </div>
         </div>
       </article>
 
@@ -4363,14 +4531,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">App Design · Fintech &amp; AI Mobile</span>
               <span class="work-roi-pill">4.9★ App Store</span>
               <span class="work-roi-pill metric-success-pill">+76% DAU</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for Nexa Wealth & AI Companion Mobile">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Nexa Wealth & AI Companion Mobile">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Nexa Wealth & AI Companion Mobile">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Nexa Wealth & AI Companion Mobile">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4380,10 +4557,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Mobile-first wealth management experience integrating predictive liquidity forecasting and conversational agent assistance. Daily active user engagement improved by 76% within 60 days of release.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">React Native · Swift UI · Design Tokens · CoreAnimation</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Mobile Fintech · Neobank</span>
-          </div>
         </div>
       </article>
 
@@ -4397,14 +4570,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">App Design · Generative Mobile Tool</span>
               <span class="work-roi-pill">+210% Retention</span>
               <span class="work-roi-pill metric-success-pill">Sub-50ms Haptics</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for Aura AI Creative Companion iOS">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Aura AI Creative Companion iOS">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Aura AI Creative Companion iOS">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Aura AI Creative Companion iOS">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4414,10 +4596,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">High-fidelity mobile workflow for content directors and video creators. Seamlessly coordinates script drafts, shot list generation, and storyboard rendering directly from iPhone with tactile haptic controls.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">iOS · SwiftUI · Metal Shaders · Swift Concurrency</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">iOS Native · Production AI</span>
-          </div>
         </div>
       </article>
 
@@ -4431,14 +4609,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">Fintech · Core Banking</span>
               <span class="work-roi-pill">+38% Velocity</span>
               <span class="work-roi-pill metric-success-pill">Instant Multi-Currency</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for FinCore Digital Banking Suite">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for FinCore Digital Banking Suite">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for FinCore Digital Banking Suite">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for FinCore Digital Banking Suite">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4448,10 +4635,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Enterprise core banking portal serving modern businesses and high-net-worth customers. Consolidates global USD/EUR/GBP treasury balances, dynamic cashflow projections, and instant virtual debit card issuance into a unified, zero-friction interface.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">React · TypeScript · Tailwind CSS · Financial Design Tokens</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Core Banking Platform</span>
-          </div>
         </div>
       </article>
 
@@ -4465,14 +4648,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">Fintech · MFS &amp; Mobile Wallet</span>
               <span class="work-roi-pill">12M+ Users</span>
               <span class="work-roi-pill metric-success-pill">1-Tap P2P Transfers</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for AuraPay Mobile Financial Ecosystem">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for AuraPay Mobile Financial Ecosystem">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for AuraPay Mobile Financial Ecosystem">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for AuraPay Mobile Financial Ecosystem">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4482,10 +4674,6 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">High-scale mobile financial services (MFS) application empowering millions with seamless digital payments. Features thumb-zone optimized QR merchant pay, contactless tap, peer-to-peer transfers, and high-yield micro-investment vaults with biometric authentication.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">React Native · iOS SwiftUI · Kotlin · Biometrics API</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Mobile Financial Services</span>
-          </div>
         </div>
       </article>
 
@@ -4499,14 +4687,23 @@
         <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-category-pill">Fintech · Payment Gateway</span>
               <span class="work-roi-pill">99.4% Auth Rate</span>
               <span class="work-roi-pill metric-success-pill">-15% Fee Reduction</span>
             </div>
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Brief for PayFast Multi-Rail Payment Gateway">
-              <span>Brief</span>
+            <div class="showcase-actions-group">
+            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for PayFast Multi-Rail Payment Gateway">
+              <span>Case Study</span>
               <span class="arrow-diag" aria-hidden="true">↗</span>
             </button>
+            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for PayFast Multi-Rail Payment Gateway">
+              <span>View in Figma</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for PayFast Multi-Rail Payment Gateway">
+              <span>View Prototype</span>
+              <span class="arrow-diag" aria-hidden="true">↗</span>
+            </a>
+          </div>
           </div>
           <div class="showcase-title-row">
             <div>
@@ -4516,10 +4713,6 @@
             <span class="showcase-item-year">2024</span>
           </div>
           <p class="showcase-item-desc">Developer-first payment gateway management and merchant checkout architecture. Empowers e-commerce platforms to dynamically route transactions between global processors, lower payment decline rates, and render high-converting embeddable payment sheets.</p>
-          <div class="showcase-footer-line">
-            <div class="showcase-stack-tag">TypeScript · Next.js · Multi-Rail Routing · PCI-DSS UI</div>
-            <span style="font-size: 0.75rem; color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em;">Payment Orchestration</span>
-          </div>
         </div>
       </article>
 
@@ -4534,13 +4727,16 @@
       </button>
     </div>
 
-    <!-- Showcase Bottom Return Bar -->
+    <!-- Showcase Bottom Next Category & Return Bar -->
     <div class="showcase-bottom-bar">
-      <button class="showcase-back-btn" id="showcase-bottom-back-btn" type="button" style="padding: 0.75rem 1.75rem; font-size: 0.8125rem;">
+      <button class="cta-btn solid-light showcase-bottom-next-btn" id="showcase-bottom-next-btn" type="button" style="padding: 0.85rem 2rem; font-size: 0.875rem;">
+        <span>View Dashboards &amp; Cockpits</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </button>
+      <button class="showcase-back-btn" id="showcase-bottom-back-btn" type="button" style="padding: 0.5rem 1.25rem; font-size: 0.75rem; opacity: 0.8;">
         <span aria-hidden="true">←</span>
         <span>Return to AA Mahmud Home</span>
       </button>
-      <p style="font-size: 0.8125rem; color: var(--ink-faint);">Or select another archetype from the full-height sidebar</p>
     </div>
 
   </div> <!-- /#showcase-view -->
@@ -5070,11 +5266,14 @@
     </div>
   </div>
 
-  <!-- Quick Case Brief Modal -->
+  <!-- Interactive Case Study Modal -->
   <div class="brief-modal-backdrop" id="brief-modal" role="dialog" aria-modal="true" aria-labelledby="modal-brief-title" aria-hidden="true">
     <div class="brief-modal-card">
-      <button class="brief-modal-close" id="brief-modal-close" aria-label="Close project brief">Close ✕</button>
-      <span class="modal-cat-tag" id="modal-brief-cat">SaaS · Platform</span>
+      <button class="brief-modal-close" id="brief-modal-close" aria-label="Close case study">Close ✕</button>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+        <span class="modal-cat-tag" id="modal-brief-cat">SaaS · Platform</span>
+        <span style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.14em; color: #34d399; font-weight: 500;">In-Depth Case Study</span>
+      </div>
       <h3 class="modal-proj-title" id="modal-brief-title">Project Name</h3>
       
       <div class="modal-grid">
@@ -5465,6 +5664,8 @@
 
     const showcaseBackHomeBtn = document.getElementById('showcase-back-home-btn');
     const showcaseBottomBackBtn = document.getElementById('showcase-bottom-back-btn');
+    const showcaseNextCatBtn = document.getElementById('showcase-next-cat-btn');
+    const showcaseBottomNextBtn = document.getElementById('showcase-bottom-next-btn');
     const showcaseEmptyResetBtn = document.getElementById('showcase-empty-reset-btn');
 
     const showcaseTitle = document.getElementById('showcase-category-title');
@@ -5522,6 +5723,29 @@
       }
     };
 
+    const nextCategoryMap = {
+      'saas': { id: 'dashboard', label: 'View Dashboards & Cockpits' },
+      'dashboard': { id: 'fintech', label: 'View Fintech, Banking & MFS' },
+      'fintech': { id: 'landing-page', label: 'View Editorial Landing Pages' },
+      'landing-page': { id: 'app-design', label: 'View Mobile App Design' },
+      'app-design': { id: 'saas', label: 'View SaaS Platforms' },
+      'all': { id: 'saas', label: 'Explore SaaS Platforms' }
+    };
+
+    function updateNextCategoryButtons() {
+      const nextInfo = nextCategoryMap[currentCategory] || nextCategoryMap['saas'];
+      if (showcaseNextCatBtn) {
+        showcaseNextCatBtn.innerHTML = `<span>${nextInfo.label}</span><span aria-hidden="true">→</span>`;
+        showcaseNextCatBtn.setAttribute('aria-label', nextInfo.label);
+        showcaseNextCatBtn.setAttribute('data-target-cat', nextInfo.id);
+      }
+      if (showcaseBottomNextBtn) {
+        showcaseBottomNextBtn.innerHTML = `<span>${nextInfo.label}</span><span class="arrow" aria-hidden="true">→</span>`;
+        showcaseBottomNextBtn.setAttribute('aria-label', nextInfo.label);
+        showcaseBottomNextBtn.setAttribute('data-target-cat', nextInfo.id);
+      }
+    }
+
     function filterStackedWorks() {
       let visibleCount = 0;
       const query = searchQuery.trim().toLowerCase();
@@ -5565,6 +5789,9 @@
           ? `${visibleCount} matching "${query}"`
           : meta.count;
       }
+
+      // Update next category transition buttons
+      updateNextCategoryButtons();
 
       // Show/Hide empty state
       if (showcaseEmptyState) {
@@ -5747,6 +5974,26 @@
           e.preventDefault();
           showHomeView(true);
         }
+      });
+    }
+
+    // Next Category transitions in showcase view
+    if (showcaseNextCatBtn) {
+      showcaseNextCatBtn.addEventListener('click', () => {
+        const target = showcaseNextCatBtn.getAttribute('data-target-cat') || 'dashboard';
+        searchQuery = '';
+        if (sidebarSearchInput) sidebarSearchInput.value = '';
+        if (sidebarClearSearch) sidebarClearSearch.style.display = 'none';
+        showShowcaseView(target, true);
+      });
+    }
+    if (showcaseBottomNextBtn) {
+      showcaseBottomNextBtn.addEventListener('click', () => {
+        const target = showcaseBottomNextBtn.getAttribute('data-target-cat') || 'dashboard';
+        searchQuery = '';
+        if (sidebarSearchInput) sidebarSearchInput.value = '';
+        if (sidebarClearSearch) sidebarClearSearch.style.display = 'none';
+        showShowcaseView(target, true);
       });
     }
 
