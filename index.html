@@ -1353,20 +1353,20 @@
     .showcase-stacked-feed {
       display: flex;
       flex-direction: column;
-      gap: 5rem;
-      margin-top: 3.5rem;
+      gap: 3rem;
+      margin-top: 3rem;
       width: 100%;
     }
     @media (min-width: 768px) {
       .showcase-stacked-feed {
-        gap: 6.5rem;
-        margin-top: 4.5rem;
+        gap: 4rem;
+        margin-top: 4rem;
       }
     }
     @media (min-width: 1024px) {
       .showcase-stacked-feed {
-        gap: 8rem;
-        margin-top: 5.5rem;
+        gap: 4.5rem;
+        margin-top: 4.5rem;
       }
     }
 
@@ -1374,10 +1374,24 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 1.75rem;
-      transition: opacity 0.35s ease, transform 0.35s ease;
-      padding-bottom: 2rem;
-      border-bottom: 1px dashed var(--line);
+      gap: 2rem;
+      background: var(--surface-grey);
+      border: 1px dashed var(--line);
+      padding: 1.75rem 1.5rem;
+      border-radius: 2px;
+      transition: background-color 0.35s ease, border-color 0.3s ease, opacity 0.35s ease, transform 0.35s ease;
+    }
+    @media (min-width: 640px) {
+      .showcase-stacked-item {
+        padding: 2.25rem 2rem;
+        gap: 2.25rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .showcase-stacked-item {
+        padding: 3rem 2.75rem;
+        gap: 2.5rem;
+      }
     }
     .showcase-stacked-item.is-hidden {
       display: none !important;
@@ -1393,7 +1407,7 @@
       position: relative;
       overflow: hidden;
       border: 1px dashed var(--line);
-      background: var(--surface-grey);
+      background: var(--canvas);
       order: 2;
     }
     .showcase-figure-wrap .ratio-box {
@@ -1455,6 +1469,40 @@
       line-height: 1.6;
       max-width: 65ch;
       opacity: 0.94;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .showcase-item-desc.is-expanded {
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+    }
+    .showcase-desc-toggle {
+      background: transparent;
+      border: none;
+      color: var(--ink);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0;
+      margin-top: -0.35rem;
+      margin-bottom: 0.25rem;
+      opacity: 0.85;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s ease, color 0.2s ease;
+      align-self: flex-start;
+    }
+    .showcase-desc-toggle:hover {
+      opacity: 1;
+      color: var(--ink);
     }
     .showcase-footer-line {
       display: flex;
@@ -4184,13 +4232,9 @@
     <!-- Showcase View Header -->
     <div class="showcase-view-header">
       <div class="showcase-breadcrumb-row">
-        <button class="showcase-back-btn showcase-next-cat-btn" id="showcase-next-cat-btn" type="button" aria-label="View Next Architecture Archetype">
-          <span>View Dashboards</span>
-          <span aria-hidden="true">→</span>
-        </button>
-        <button class="showcase-back-btn showcase-home-link-btn" id="showcase-back-home-btn" type="button" aria-label="Return to AA Mahmud Home" style="opacity: 0.75; font-size: 0.6875rem;">
+        <button class="showcase-back-btn" id="showcase-back-home-btn" type="button" aria-label="Return to AA Mahmud Home">
           <span aria-hidden="true">←</span>
-          <span>Home Overview</span>
+          <span>Back to Home Overview</span>
         </button>
       </div>
 
@@ -4245,6 +4289,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Architected complete node-graph interface for generative video diffusion models, translating non-deterministic latencies into real-time feedback loops. Reduced timeline rendering latency by 42% and elevated creator retention by 140%.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4284,6 +4332,10 @@
             <span class="showcase-item-year">2024</span>
           </div>
           <p class="showcase-item-desc">Designed scalable drag-and-drop orchestration canvas for autonomous agent swarms, integrating real-time telemetry, conditional logic branching, and zero-latency state synchronization across enterprise teams.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4323,6 +4375,10 @@
             <span class="showcase-item-year">2024</span>
           </div>
           <p class="showcase-item-desc">Unified 12 federated engineering teams into a single automated design tokens engine. Programmatic synchronization across Figma, React, and mobile native runtimes reduced front-end regression bug tickets by 68%.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4362,6 +4418,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">High-density dark-mode telemetry cockpit processing over 450,000 events/sec. Utilized virtualized charts, progressive level-of-detail data decimation, and predictive incident alert triage.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4401,6 +4461,10 @@
             <span class="showcase-item-year">2024</span>
           </div>
           <p class="showcase-item-desc">High-throughput financial modeling workstation tailored for quantitative portfolio managers. Streamlined multi-tier portfolio rebalancing workflows and reduced trade execution cycle time by 60%.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4440,6 +4504,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Real-time health, token consumption, and cost observability terminal for LLM clusters. Visualized agent reasoning trails, fallback triggers, and unit economics with sub-second responsiveness.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4479,6 +4547,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Editorial dark-mode product showcase designed to convert venture enterprise leads. Integrated WebGL particle physics, micro-interactions, and high-velocity storytelling that lifted demo requests by 128%.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4518,6 +4590,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Developer-focused landing page for next-gen data intelligence and workflow synchronization. Features interactive code playground embeds, live benchmark comparisons, and instant API token provisioning.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4557,6 +4633,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Mobile-first wealth management experience integrating predictive liquidity forecasting and conversational agent assistance. Daily active user engagement improved by 76% within 60 days of release.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4596,6 +4676,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">High-fidelity mobile workflow for content directors and video creators. Seamlessly coordinates script drafts, shot list generation, and storyboard rendering directly from iPhone with tactile haptic controls.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4635,6 +4719,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">Enterprise core banking portal serving modern businesses and high-net-worth customers. Consolidates global USD/EUR/GBP treasury balances, dynamic cashflow projections, and instant virtual debit card issuance into a unified, zero-friction interface.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4674,6 +4762,10 @@
             <span class="showcase-item-year">2025</span>
           </div>
           <p class="showcase-item-desc">High-scale mobile financial services (MFS) application empowering millions with seamless digital payments. Features thumb-zone optimized QR merchant pay, contactless tap, peer-to-peer transfers, and high-yield micro-investment vaults with biometric authentication.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4713,6 +4805,10 @@
             <span class="showcase-item-year">2024</span>
           </div>
           <p class="showcase-item-desc">Developer-first payment gateway management and merchant checkout architecture. Empowers e-commerce platforms to dynamically route transactions between global processors, lower payment decline rates, and render high-converting embeddable payment sheets.</p>
+          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
+            <span class="toggle-text">Show more</span>
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
         </div>
       </article>
 
@@ -4727,16 +4823,13 @@
       </button>
     </div>
 
-    <!-- Showcase Bottom Next Category & Return Bar -->
+    <!-- Showcase Bottom Return Bar -->
     <div class="showcase-bottom-bar">
-      <button class="cta-btn solid-light showcase-bottom-next-btn" id="showcase-bottom-next-btn" type="button" style="padding: 0.85rem 2rem; font-size: 0.875rem;">
-        <span>View Dashboards &amp; Cockpits</span>
-        <span class="arrow" aria-hidden="true">→</span>
-      </button>
-      <button class="showcase-back-btn" id="showcase-bottom-back-btn" type="button" style="padding: 0.5rem 1.25rem; font-size: 0.75rem; opacity: 0.8;">
+      <button class="showcase-back-btn" id="showcase-bottom-back-btn" type="button" style="padding: 0.75rem 1.75rem; font-size: 0.8125rem;">
         <span aria-hidden="true">←</span>
         <span>Return to AA Mahmud Home</span>
       </button>
+      <p style="font-size: 0.8125rem; color: var(--ink-faint);">Or select another archetype from the full-height sidebar</p>
     </div>
 
   </div> <!-- /#showcase-view -->
@@ -5664,8 +5757,6 @@
 
     const showcaseBackHomeBtn = document.getElementById('showcase-back-home-btn');
     const showcaseBottomBackBtn = document.getElementById('showcase-bottom-back-btn');
-    const showcaseNextCatBtn = document.getElementById('showcase-next-cat-btn');
-    const showcaseBottomNextBtn = document.getElementById('showcase-bottom-next-btn');
     const showcaseEmptyResetBtn = document.getElementById('showcase-empty-reset-btn');
 
     const showcaseTitle = document.getElementById('showcase-category-title');
@@ -5723,29 +5814,6 @@
       }
     };
 
-    const nextCategoryMap = {
-      'saas': { id: 'dashboard', label: 'View Dashboards & Cockpits' },
-      'dashboard': { id: 'fintech', label: 'View Fintech, Banking & MFS' },
-      'fintech': { id: 'landing-page', label: 'View Editorial Landing Pages' },
-      'landing-page': { id: 'app-design', label: 'View Mobile App Design' },
-      'app-design': { id: 'saas', label: 'View SaaS Platforms' },
-      'all': { id: 'saas', label: 'Explore SaaS Platforms' }
-    };
-
-    function updateNextCategoryButtons() {
-      const nextInfo = nextCategoryMap[currentCategory] || nextCategoryMap['saas'];
-      if (showcaseNextCatBtn) {
-        showcaseNextCatBtn.innerHTML = `<span>${nextInfo.label}</span><span aria-hidden="true">→</span>`;
-        showcaseNextCatBtn.setAttribute('aria-label', nextInfo.label);
-        showcaseNextCatBtn.setAttribute('data-target-cat', nextInfo.id);
-      }
-      if (showcaseBottomNextBtn) {
-        showcaseBottomNextBtn.innerHTML = `<span>${nextInfo.label}</span><span class="arrow" aria-hidden="true">→</span>`;
-        showcaseBottomNextBtn.setAttribute('aria-label', nextInfo.label);
-        showcaseBottomNextBtn.setAttribute('data-target-cat', nextInfo.id);
-      }
-    }
-
     function filterStackedWorks() {
       let visibleCount = 0;
       const query = searchQuery.trim().toLowerCase();
@@ -5789,9 +5857,6 @@
           ? `${visibleCount} matching "${query}"`
           : meta.count;
       }
-
-      // Update next category transition buttons
-      updateNextCategoryButtons();
 
       // Show/Hide empty state
       if (showcaseEmptyState) {
@@ -5977,26 +6042,6 @@
       });
     }
 
-    // Next Category transitions in showcase view
-    if (showcaseNextCatBtn) {
-      showcaseNextCatBtn.addEventListener('click', () => {
-        const target = showcaseNextCatBtn.getAttribute('data-target-cat') || 'dashboard';
-        searchQuery = '';
-        if (sidebarSearchInput) sidebarSearchInput.value = '';
-        if (sidebarClearSearch) sidebarClearSearch.style.display = 'none';
-        showShowcaseView(target, true);
-      });
-    }
-    if (showcaseBottomNextBtn) {
-      showcaseBottomNextBtn.addEventListener('click', () => {
-        const target = showcaseBottomNextBtn.getAttribute('data-target-cat') || 'dashboard';
-        searchQuery = '';
-        if (sidebarSearchInput) sidebarSearchInput.value = '';
-        if (sidebarClearSearch) sidebarClearSearch.style.display = 'none';
-        showShowcaseView(target, true);
-      });
-    }
-
     // Return to Home buttons in showcase view
     if (showcaseBackHomeBtn) {
       showcaseBackHomeBtn.addEventListener('click', () => showHomeView(true));
@@ -6169,6 +6214,25 @@
         e.stopPropagation();
         const card = btn.closest('.work-item');
         if (card) openBriefModal(card);
+      });
+    });
+
+    // Attach description show more / hide toggle buttons
+    document.querySelectorAll('.showcase-desc-toggle').forEach((toggleBtn) => {
+      toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const captionBlock = toggleBtn.closest('.showcase-caption-block');
+        if (!captionBlock) return;
+        const descEl = captionBlock.querySelector('.showcase-item-desc');
+        const textSpan = toggleBtn.querySelector('.toggle-text');
+        const arrowSpan = toggleBtn.querySelector('.toggle-arrow');
+
+        if (!descEl) return;
+        const isExpanded = descEl.classList.toggle('is-expanded');
+        toggleBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        if (textSpan) textSpan.textContent = isExpanded ? 'Hide' : 'Show more';
+        if (arrowSpan) arrowSpan.textContent = isExpanded ? '▴' : '▾';
       });
     });
 
