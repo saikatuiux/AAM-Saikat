@@ -1,6 +1,6 @@
 {
-  "summary": "Implementation plan for improving recruiter readability on the sidebar availability status pill and adding a 2-line expandable 'Show more ▾ / Hide ▴' toggle for project descriptions across all category showcase pages.",
-  "updatedAt": "2026-10-16T08:05:55.490926775Z",
+  "summary": "Implementation plan to reduce cognitive load (Hick's Law & Visual Hierarchy) by streamlining card actions to 2 primary actions (Case Study and Prototype) with an accessible overflow dropdown menu for secondary links (Figma, Live Site), and fixing Live Site visibility in dark mode.",
+  "updatedAt": "2026-10-17T07:57:35.256185820Z",
   "requestFeedback": true,
   "userFacing": true
 }

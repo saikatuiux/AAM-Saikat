@@ -1389,7 +1389,7 @@
     }
     @media (min-width: 1024px) {
       .showcase-stacked-item {
-        padding: 3rem 2.75rem;
+        padding: 2.75rem 2.75rem;
         gap: 2.5rem;
       }
     }
@@ -2115,16 +2115,37 @@
       line-height: 1.2;
       border-radius: 2px;
     }
+    /* Primary 1: Case Study (Outlined) */
+    .quick-brief-btn {
+      background: transparent;
+      border: 1px dashed var(--line);
+      color: var(--ink);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.42rem 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      font-weight: 500;
+      line-height: 1.2;
+      border-radius: 2px;
+    }
     .quick-brief-btn:hover {
       border-color: var(--ink);
       color: var(--ink);
       background: var(--surface-grey);
       transform: translateY(-1px);
     }
-    .showcase-action-link {
-      background: #141413;
-      border: 1px solid #141413;
-      color: #ffffff !important;
+    
+    /* Primary 2: View Prototype (Accented Emerald Badge) */
+    .showcase-action-link.action-proto {
+      background: rgba(16, 185, 129, 0.12) !important;
+      border: 1px solid rgba(52, 211, 153, 0.5) !important;
+      color: #059669 !important;
       font-size: 0.6875rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -2139,33 +2160,7 @@
       text-decoration: none;
       line-height: 1.2;
       border-radius: 2px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-    .showcase-action-link:hover {
-      background: #2a2a28;
-      color: #ffffff !important;
-      border-color: #2a2a28;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
-    }
-    /* In dark mode, ensure View in Figma has crisp white pill with dark text or distinct high contrast */
-    [data-theme="dark"] .showcase-action-link,
-    :root:not([data-theme="light"]) .showcase-action-link {
-      background: #f7f7f5;
-      border: 1px solid #f7f7f5;
-      color: #0c0c0b !important;
-    }
-    [data-theme="dark"] .showcase-action-link:hover,
-    :root:not([data-theme="light"]) .showcase-action-link:hover {
-      background: #ffffff;
-      border-color: #ffffff;
-      color: #000000 !important;
-    }
-    /* Distinct accent for View Prototype */
-    .showcase-action-link.action-proto {
-      background: rgba(16, 185, 129, 0.12) !important;
-      border: 1px solid rgba(52, 211, 153, 0.5) !important;
-      color: #059669 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
     [data-theme="dark"] .showcase-action-link.action-proto,
     :root:not([data-theme="light"]) .showcase-action-link.action-proto {
@@ -2179,9 +2174,115 @@
       background: #10b981 !important;
       color: #ffffff !important;
       border-color: #10b981 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
     }
-    .showcase-action-link svg {
-      flex-shrink: 0;
+
+    /* Overflow Menu (Hick's Law - Secondary Actions Popover) */
+    .showcase-overflow-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+    .showcase-overflow-btn {
+      background: transparent;
+      border: 1px dashed var(--line);
+      color: var(--ink);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.42rem 0.75rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      font-weight: 500;
+      line-height: 1.2;
+      border-radius: 2px;
+    }
+    .showcase-overflow-btn:hover,
+    .showcase-overflow-btn.is-active {
+      border-color: var(--ink);
+      background: var(--surface-grey);
+      color: var(--ink);
+    }
+    .showcase-overflow-dropdown {
+      position: absolute;
+      top: calc(100% + 0.45rem);
+      right: 0;
+      background: var(--canvas);
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+      padding: 0.35rem;
+      min-width: 175px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 40;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px) scale(0.98);
+      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.18s;
+      pointer-events: none;
+    }
+    [data-theme="dark"] .showcase-overflow-dropdown,
+    :root:not([data-theme="light"]) .showcase-overflow-dropdown {
+      background: #151513;
+      border-color: rgba(247, 247, 245, 0.24);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+    .showcase-overflow-wrap.is-open .showcase-overflow-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .overflow-item-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ink) !important;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .overflow-item-link,
+    :root:not([data-theme="light"]) .overflow-item-link {
+      color: #f7f7f5 !important;
+    }
+    .overflow-item-link:hover {
+      background: var(--surface-grey);
+      color: var(--ink) !important;
+    }
+    [data-theme="dark"] .overflow-item-link:hover,
+    :root:not([data-theme="light"]) .overflow-item-link:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff !important;
+    }
+    .overflow-item-link .overflow-tag {
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.65;
+    }
+    .overflow-item-link.live-link {
+      border-top: 1px dashed var(--line);
+      margin-top: 0.15rem;
+      padding-top: 0.55rem;
+    }
+    .overflow-item-link.live-link:hover {
+      color: #10b981 !important;
+    }
+    [data-theme="dark"] .overflow-item-link.live-link:hover,
+    :root:not([data-theme="light"]) .overflow-item-link.live-link:hover {
+      color: #34d399 !important;
     }
 
     /* Works Empty State */
@@ -3538,17 +3639,12 @@
 
     <!-- Center Block: Showcase Archetypes & Filters -->
     <div class="sidebar-center-block">
-      <div class="sidebar-heading-row">
-        <span class="sidebar-eyebrow">Category Index</span>
-        <h2 class="sidebar-heading-title">Showcase Archetypes</h2>
-      </div>
-
       <!-- Archetype Filter Navigation Tabs (1: SaaS, 2: Dashboards, 3: Fintech & Banking, 4: Landing Pages, 5: App Design) -->
       <nav class="sidebar-archetype-nav" role="tablist" aria-label="Filter works by archetype">
         <button class="category-btn" data-filter="saas" role="tab" aria-selected="false">
           <span class="cat-indicator" aria-hidden="true"></span>
           <span class="cat-name">SaaS Platforms</span>
-          <span class="cat-count">3</span>
+          <span class="cat-count">5</span>
         </button>
         <button class="category-btn" data-filter="dashboard" role="tab" aria-selected="false">
           <span class="cat-indicator" aria-hidden="true"></span>
@@ -3558,7 +3654,7 @@
         <button class="category-btn" data-filter="fintech" role="tab" aria-selected="false">
           <span class="cat-indicator" aria-hidden="true"></span>
           <span class="cat-name">Fintech &amp; Banking</span>
-          <span class="cat-count">3</span>
+          <span class="cat-count">5</span>
         </button>
         <button class="category-btn" data-filter="landing-page" role="tab" aria-selected="false">
           <span class="cat-indicator" aria-hidden="true"></span>
@@ -3568,7 +3664,7 @@
         <button class="category-btn" data-filter="app-design" role="tab" aria-selected="false">
           <span class="cat-indicator" aria-hidden="true"></span>
           <span class="cat-name">App Design</span>
-          <span class="cat-count">2</span>
+          <span class="cat-count">6</span>
         </button>
       </nav>
     </div>
@@ -3621,7 +3717,7 @@
   <button class="mobile-archetype-trigger" id="mobile-archetype-trigger" aria-label="Open Showcase Archetypes Sidebar">
     <span class="trigger-diamond" aria-hidden="true"></span>
     <span>Showcase Archetypes</span>
-    <span class="trigger-count">13</span>
+    <span class="trigger-count">21</span>
   </button>
 
   <!-- Main Site Wrapper (Offset for full-height left sidebar on desktop) -->
@@ -4253,132 +4349,253 @@
     <!-- Full-Width Stacked Feed: one is below another -->
     <div class="showcase-stacked-feed" id="showcase-feed">
 
-      <!-- 01: CineGraph AI Studio (SaaS) -->
-      <article class="showcase-stacked-item work-item" data-category="saas" data-title="CineGraph AI Studio" data-client="CineGraph AI (Series B)" data-year="2025" data-roi="+140% Retention" data-cat-label="SaaS Platform · AI Video Diffusion" data-challenge="High creator churn due to non-deterministic video generation delays and opaque model parameters." data-solution="Architected intuitive node graph with progressive frame previews, sub-millisecond timeline scrubbing, and deterministic parameter presets." data-tech="React · WebGL · Next.js · Canvas API · Storybook">
+      <!-- 01: Collablly Supply Chain & Supplier Collaboration Platform -->
+      <article class="showcase-stacked-item work-item" data-category="saas" data-title="Collablly Supply Chain Collaboration" data-client="Collablly Technologies" data-year="2025" data-roi="+3.8x PO Cycle Velocity" data-cat-label="SaaS Platform · Supplier &amp; Operations Collaboration" data-challenge="Manufacturing and distribution teams suffered from fragmented supplier email threads, uncoordinated purchase orders, and high manual follow-up overhead." data-solution="Architected a unified supplier collaboration portal featuring real-time purchase order lifecycle tracking, automated approval multi-tier workflows, and inventory delivery risk telemetry." data-tech="React · TypeScript · Tailwind CSS · Workflow Engine · REST &amp; WebSockets">
         <div class="showcase-figure-wrap">
           <div class="ratio-box">
-            <img src="/src/assets/images/ai_video_studio_ux_1791101157949.jpg" alt="CineGraph AI Studio — Generative Video Diffusion Interface" loading="lazy" referrerpolicy="no-referrer" />
+            <img src="/src/assets/images/collablly_saas_platform_1792223251204.jpg" alt="Collablly Supply Chain Collaboration Platform — Supplier PO Management" loading="lazy" referrerpolicy="no-referrer" />
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">+140% Retention</span>
-              <span class="work-roi-pill metric-success-pill">Sub-42% Latency</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for CineGraph AI Studio">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for CineGraph AI Studio">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for CineGraph AI Studio">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
-              <h2 class="showcase-item-heading">CineGraph AI Studio</h2>
-              <p class="work-medium">Enterprise Video AI Workflow &amp; Node Canvas</p>
+              <h2 class="showcase-item-heading">Collablly Supply Chain &amp; Supplier Portal</h2>
+              <p class="work-medium">Enterprise Manufacturing &amp; Distribution Operations Platform</p>
             </div>
             <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">Architected complete node-graph interface for generative video diffusion models, translating non-deterministic latencies into real-time feedback loops. Reduced timeline rendering latency by 42% and elevated creator retention by 140%.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">+3.8x PO Velocity</span>
+              <span class="work-roi-pill metric-success-pill">-45% Supplier Delays</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Collablly Supply Chain Collaboration">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Collablly Supply Chain Collaboration">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Collablly Supply Chain Collaboration">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Collablly Supply Chain Collaboration">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                <a href="https://collablly.com/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit live website for Collablly Supply Chain Collaboration">
+                  <span>Live Site</span>
+                  <span class="overflow-tag">Visit ↗</span>
+                </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
-      <!-- 02: Nexus Flow Pipeline Builder (SaaS) -->
-      <article class="showcase-stacked-item work-item" data-category="saas" data-title="Nexus Flow Pipeline Builder" data-client="Nexus Automations" data-year="2024" data-roi="+3.4x Velocity" data-cat-label="SaaS Platform · Agent Workflow" data-challenge="Engineers spent hours debugging asynchronous agent execution without visual lineage or interactive breakpoints." data-solution="Constructed interactive visual runtime debugger with step-by-step state inspection and sub-millisecond execution playback." data-tech="TypeScript · React Flow · Tailwind CSS · WebSockets">
+      <!-- 02: Docomate AI Intelligent Document Processing -->
+      <article class="showcase-stacked-item work-item" data-category="saas" data-title="Docomate AI Document Processing" data-client="Docomate Intelligence" data-year="2025" data-roi="99.4% Extraction Precision" data-cat-label="SaaS Platform · Intelligent Document Processing &amp; OCR" data-challenge="Knowledge workers wasted thousands of monthly hours manually transcribing invoices, bill-of-ladings, and complex multi-page unstructured PDF files into internal ERP systems." data-solution="Engineered a dual-pane intelligent document processing studio with side-by-side OCR visualization, confidence heatmaps, schema-guided validation, and instant JSON/CSV export." data-tech="React · TypeScript · Next.js · Canvas OCR Overlay · Web Workers · REST API">
         <div class="showcase-figure-wrap">
           <div class="ratio-box">
-            <img src="/src/assets/images/saas_workflow_ui_1791627882230.jpg" alt="Nexus Flow Pipeline Builder — B2B SaaS Orchestration Canvas" loading="lazy" referrerpolicy="no-referrer" />
+            <img src="/src/assets/images/docomate_ai_idp_1792223266460.jpg" alt="Docomate AI Intelligent Document Processing — OCR & Schema Extraction" loading="lazy" referrerpolicy="no-referrer" />
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">+3.4x Velocity</span>
-              <span class="work-roi-pill metric-success-pill">0-Latency Sync</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Nexus Flow Pipeline Builder">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Nexus Flow Pipeline Builder">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Nexus Flow Pipeline Builder">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
-              <h2 class="showcase-item-heading">Nexus Flow Pipeline Builder</h2>
-              <p class="work-medium">Multi-Agent Orchestration &amp; Cloud Canvas</p>
+              <h2 class="showcase-item-heading">Docomate AI Intelligent Document Processing</h2>
+              <p class="work-medium">Next-Gen OCR, Automated Schema Extraction &amp; Enterprise IDP</p>
             </div>
-            <span class="showcase-item-year">2024</span>
+            <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">Designed scalable drag-and-drop orchestration canvas for autonomous agent swarms, integrating real-time telemetry, conditional logic branching, and zero-latency state synchronization across enterprise teams.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">99.4% Precision</span>
+              <span class="work-roi-pill metric-success-pill">-82% Manual Entry Time</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Docomate AI Document Processing">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Docomate AI Document Processing">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Docomate AI Document Processing">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Docomate AI Document Processing">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                <a href="https://docomate.ai/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit live website for Docomate AI Document Processing">
+                  <span>Live Site</span>
+                  <span class="overflow-tag">Visit ↗</span>
+                </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
-      <!-- 03: HyperScale Core Design Platform (SaaS) -->
-      <article class="showcase-stacked-item work-item" data-category="saas" data-title="HyperScale Core Design Platform" data-client="HyperScale Systems" data-year="2024" data-roi="-68% Dev Overhead" data-cat-label="SaaS Platform · Design Infrastructure" data-challenge="Brand inconsistencies and duplicated engineering effort across 4 distinct product divisions and 30+ repositories." data-solution="Automated token continuous integration pipeline feeding Figma Variables directly into typed TypeScript tokens." data-tech="React · Design Tokens · Figma API · Tailwind · Monorepo">
+      <!-- 03: Othership Hybrid Workplace & Desk Booking Platform -->
+      <article class="showcase-stacked-item work-item" data-category="saas" data-title="Othership Hybrid Workplace Platform" data-client="Othership Workspaces" data-year="2025" data-roi="+92% Space Utilization" data-cat-label="SaaS Platform · Workplace &amp; Desk Booking" data-challenge="Enterprises transitioning to flexible hybrid work struggled with empty desks, friction booking meeting rooms, and disconnected team scheduling." data-solution="Designed an interactive multi-floor digital twin floorplan with live presence indicators, 1-click hot-desk reservations, and calendar synchronization across 8,000+ workplace tools." data-tech="TypeScript · React · SVG Interactive Floorplan · Tailwind CSS · Realtime WebSockets">
         <div class="showcase-figure-wrap">
           <div class="ratio-box">
-            <img src="/src/assets/images/design_system_scale_1791101186365.jpg" alt="HyperScale Core Design Platform — Multi-Brand Token Studio" loading="lazy" referrerpolicy="no-referrer" />
+            <img src="/src/assets/images/othership_clean_ui_1792223295350.jpg" alt="Othership Hybrid Workplace & Desk Booking Platform" loading="lazy" referrerpolicy="no-referrer" />
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">-68% Dev Overhead</span>
-              <span class="work-roi-pill metric-success-pill">100% Token Sync</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for HyperScale Core Design Platform">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for HyperScale Core Design Platform">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for HyperScale Core Design Platform">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
-              <h2 class="showcase-item-heading">HyperScale Core Design Platform</h2>
-              <p class="work-medium">Enterprise Token Governance &amp; Micro-Frontend Studio</p>
+              <h2 class="showcase-item-heading">Othership Hybrid Workplace &amp; Desk Booking</h2>
+              <p class="work-medium">Interactive Floorplan Digital Twin &amp; Team Scheduling</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">+92% Space Utilization</span>
+              <span class="work-roi-pill metric-success-pill">1-Click Desk Booking</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Othership Hybrid Workplace Platform">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Othership Hybrid Workplace Platform">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Othership Hybrid Workplace Platform">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Othership Hybrid Workplace Platform">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                <a href="https://othership.com/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit live website for Othership Hybrid Workplace Platform">
+                  <span>Live Site</span>
+                  <span class="overflow-tag">Visit ↗</span>
+                </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04: Caboodle Services CPG Sales & Trade Promotion Platform -->
+      <article class="showcase-stacked-item work-item" data-category="saas" data-title="Caboodle Services CPG Sales Platform" data-client="Caboodle Services" data-year="2024" data-roi="+28% Trade Spend ROI" data-cat-label="SaaS Platform · Natural Product CPG &amp; Trade Management" data-challenge="Natural CPG food & beverage sales teams dealt with fragmented distributor spreadsheets (UNFI, KeHE), messy UPC/SKU retail code mapping, and opaque trade promotion ROI." data-solution="Constructed a unified trade promotion management SaaS uniting distributor sales tracking, retail store performance heatmaps, and automated retailer SKU spec dictionaries." data-tech="React · TypeScript · D3.js · Data Tables · Financial Calculation Engine · Tailwind CSS">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box">
+            <img src="/src/assets/images/caboodle_cpg_saas_1792223309823.jpg" alt="Caboodle Services CPG Sales Platform — Distributor Sales & Trade Promotion" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">Caboodle Services CPG Sales &amp; Trade Hub</h2>
+              <p class="work-medium">Distributor Performance, Trade Spend &amp; Retail Code Intelligence</p>
             </div>
             <span class="showcase-item-year">2024</span>
           </div>
-          <p class="showcase-item-desc">Unified 12 federated engineering teams into a single automated design tokens engine. Programmatic synchronization across Figma, React, and mobile native runtimes reduced front-end regression bug tickets by 68%.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">+28% Trade Spend ROI</span>
+              <span class="work-roi-pill metric-success-pill">Automated SKU Mapping</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Caboodle Services CPG Sales Platform">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Caboodle Services CPG Sales Platform">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Caboodle Services CPG Sales Platform">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Caboodle Services CPG Sales Platform">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                <a href="https://caboodleservices.com/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit live website for Caboodle Services CPG Sales Platform">
+                  <span>Live Site</span>
+                  <span class="overflow-tag">Visit ↗</span>
+                </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05: Exelo Testto Process Automation & QA Platform -->
+      <article class="showcase-stacked-item work-item" data-category="saas" data-title="Exelo Testto Automation Platform" data-client="Exelo ITS" data-year="2025" data-roi="98.1% Automation Pass Rate" data-cat-label="SaaS Platform · AI Process Automation &amp; QA" data-challenge="Enterprise software teams struggled with manual test regression bottlenecks, complex multi-system workflow breaks, and opaque Python test orchestration." data-solution="Architected the Testto Cloud SaaS suite featuring codeless automated test execution, AI-driven process orchestration flow graphs, and real-time regression telemetry." data-tech="React · TypeScript · Python Orchestrator · WebGL Flow Graphs · Tailwind CSS · Docker &amp; Cloud">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box">
+            <img src="/src/assets/images/exelo_testto_saas_1792223324724.jpg" alt="Exelo Testto Automation Platform — AI Process Orchestration & QA" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">Exelo Testto AI Process &amp; QA Studio</h2>
+              <p class="work-medium">Enterprise Process Automation &amp; Continuous Testing Suite</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">98.1% Pass Rate</span>
+              <span class="work-roi-pill metric-success-pill">Codeless QA Flows</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Exelo Testto Automation Platform">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Exelo Testto Automation Platform">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Exelo Testto Automation Platform">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Exelo Testto Automation Platform">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                <a href="https://exelo.pl/en/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit live website for Exelo Testto Automation Platform">
+                  <span>Live Site</span>
+                  <span class="overflow-tag">Visit ↗</span>
+                </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -4390,26 +4607,6 @@
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">Sub-32ms Latency</span>
-              <span class="work-roi-pill metric-success-pill">450k Events/s</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for OmniMetrics Telemetry Cockpit">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for OmniMetrics Telemetry Cockpit">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for OmniMetrics Telemetry Cockpit">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
               <h2 class="showcase-item-heading">OmniMetrics Telemetry Cockpit</h2>
@@ -4417,11 +4614,34 @@
             </div>
             <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">High-density dark-mode telemetry cockpit processing over 450,000 events/sec. Utilized virtualized charts, progressive level-of-detail data decimation, and predictive incident alert triage.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">Sub-32ms Latency</span>
+              <span class="work-roi-pill metric-success-pill">450k Events/s</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for OmniMetrics Telemetry Cockpit">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for OmniMetrics Telemetry Cockpit">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for OmniMetrics Telemetry Cockpit">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for OmniMetrics Telemetry Cockpit">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -4433,26 +4653,6 @@
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">+84% ARR Visibility</span>
-              <span class="work-roi-pill metric-success-pill">-60% Rebalance Time</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for FinPulse Algorithmic Growth Cockpit">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for FinPulse Algorithmic Growth Cockpit">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for FinPulse Algorithmic Growth Cockpit">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
               <h2 class="showcase-item-heading">FinPulse Algorithmic Cockpit</h2>
@@ -4460,11 +4660,34 @@
             </div>
             <span class="showcase-item-year">2024</span>
           </div>
-          <p class="showcase-item-desc">High-throughput financial modeling workstation tailored for quantitative portfolio managers. Streamlined multi-tier portfolio rebalancing workflows and reduced trade execution cycle time by 60%.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">+84% ARR Visibility</span>
+              <span class="work-roi-pill metric-success-pill">-60% Rebalance Time</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for FinPulse Algorithmic Growth Cockpit">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for FinPulse Algorithmic Growth Cockpit">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for FinPulse Algorithmic Growth Cockpit">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for FinPulse Algorithmic Growth Cockpit">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -4476,26 +4699,6 @@
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">99.98% Uptime</span>
-              <span class="work-roi-pill metric-success-pill">Cost Guardrails</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Synapse Autonomous Agent Telemetry">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Synapse Autonomous Agent Telemetry">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Synapse Autonomous Agent Telemetry">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
               <h2 class="showcase-item-heading">Synapse Agent Telemetry</h2>
@@ -4503,11 +4706,34 @@
             </div>
             <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">Real-time health, token consumption, and cost observability terminal for LLM clusters. Visualized agent reasoning trails, fallback triggers, and unit economics with sub-second responsiveness.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">99.98% Uptime</span>
+              <span class="work-roi-pill metric-success-pill">Cost Guardrails</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Synapse Autonomous Agent Telemetry">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Synapse Autonomous Agent Telemetry">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Synapse Autonomous Agent Telemetry">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Synapse Autonomous Agent Telemetry">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -4519,26 +4745,6 @@
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">+128% Conversion</span>
-              <span class="work-roi-pill metric-success-pill">60 FPS WebGL</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Lumina Generative Studio Web Presence">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Lumina Generative Studio Web Presence">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Lumina Generative Studio Web Presence">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
               <h2 class="showcase-item-heading">Lumina Generative Studio</h2>
@@ -4546,11 +4752,34 @@
             </div>
             <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">Editorial dark-mode product showcase designed to convert venture enterprise leads. Integrated WebGL particle physics, micro-interactions, and high-velocity storytelling that lifted demo requests by 128%.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">+128% Conversion</span>
+              <span class="work-roi-pill metric-success-pill">60 FPS WebGL</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Lumina Generative Studio Web Presence">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Lumina Generative Studio Web Presence">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Lumina Generative Studio Web Presence">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Lumina Generative Studio Web Presence">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -4562,26 +4791,6 @@
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">+45k Waitlist</span>
-              <span class="work-roi-pill metric-success-pill">Sub-1s LCP</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Aurora Intelligence Cloud Launchpad">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Aurora Intelligence Cloud Launchpad">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Aurora Intelligence Cloud Launchpad">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
               <h2 class="showcase-item-heading">Aurora Intelligence Cloud</h2>
@@ -4589,226 +4798,584 @@
             </div>
             <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">Developer-focused landing page for next-gen data intelligence and workflow synchronization. Features interactive code playground embeds, live benchmark comparisons, and instant API token provisioning.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
-        </div>
-      </article>
-
-      <!-- 09: Nexa Wealth & AI Companion Mobile (App Design) -->
-      <article class="showcase-stacked-item work-item" data-category="app-design" data-title="Nexa Wealth & AI Companion Mobile" data-client="Nexa Neobank" data-year="2025" data-roi="4.9★ App Store Rating" data-cat-label="App Design · Fintech & AI Mobile" data-challenge="Users felt overwhelmed by traditional banking apps presenting fragmented transactions and opaque investment fees." data-solution="Designed a dual-surface feed: unified fluid cashflow curve alongside proactive AI advice pills for automated micro-investing." data-tech="React Native · Swift UI · Design Tokens · CoreAnimation">
-        <div class="showcase-figure-wrap">
-          <div class="ratio-box" style="aspect-ratio: 16 / 10;">
-            <img src="/src/assets/images/mobile_app_design_1791627915338.jpg" alt="Nexa Wealth & AI Companion Mobile" loading="lazy" referrerpolicy="no-referrer" />
-          </div>
-        </div>
-        <div class="showcase-caption-block">
           <div class="showcase-tags-line">
             <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">4.9★ App Store</span>
-              <span class="work-roi-pill metric-success-pill">+76% DAU</span>
+              <span class="work-roi-pill">+45k Waitlist</span>
+              <span class="work-roi-pill metric-success-pill">Sub-1s LCP</span>
             </div>
             <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Nexa Wealth & AI Companion Mobile">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Nexa Wealth & AI Companion Mobile">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Nexa Wealth & AI Companion Mobile">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
-          <div class="showcase-title-row">
-            <div>
-              <h2 class="showcase-item-heading">Nexa Wealth &amp; AI Companion</h2>
-              <p class="work-medium">Autonomous Wealth Management &amp; Mobile Companion</p>
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Aurora Intelligence Cloud Launchpad">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Aurora Intelligence Cloud Launchpad">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Aurora Intelligence Cloud Launchpad">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Aurora Intelligence Cloud Launchpad">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                </div>
+              </div>
             </div>
-            <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">Mobile-first wealth management experience integrating predictive liquidity forecasting and conversational agent assistance. Daily active user engagement improved by 76% within 60 days of release.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
         </div>
       </article>
 
-      <!-- 10: Aura AI Creative Companion iOS (App Design) -->
-      <article class="showcase-stacked-item work-item" data-category="app-design" data-title="Aura AI Creative Companion iOS" data-client="Aura Media Labs" data-year="2025" data-roi="+210% Weekly Retention" data-cat-label="App Design · Generative Mobile Tool" data-challenge="Desktop generative video tools were trapped behind heavy workstations, limiting creators in the field and on set." data-solution="Engineered an agile multi-step mobile pipeline with tactile thumb-reach ergonomics, local caching, and cloud render sync." data-tech="iOS · SwiftUI · Metal Shaders · Swift Concurrency">
-        <div class="showcase-figure-wrap">
-          <div class="ratio-box" style="aspect-ratio: 16 / 10;">
-            <img src="/src/assets/images/mobile_ai_companion_1791740159036.jpg" alt="Aura AI Creative Companion iOS" loading="lazy" referrerpolicy="no-referrer" />
-          </div>
-        </div>
-        <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">+210% Retention</span>
-              <span class="work-roi-pill metric-success-pill">Sub-50ms Haptics</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Aura AI Creative Companion iOS">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for Aura AI Creative Companion iOS">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Aura AI Creative Companion iOS">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
-          <div class="showcase-title-row">
-            <div>
-              <h2 class="showcase-item-heading">Aura AI Creative Companion</h2>
-              <p class="work-medium">On-The-Go Generative Production Suite</p>
-            </div>
-            <span class="showcase-item-year">2025</span>
-          </div>
-          <p class="showcase-item-desc">High-fidelity mobile workflow for content directors and video creators. Seamlessly coordinates script drafts, shot list generation, and storyboard rendering directly from iPhone with tactile haptic controls.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
-        </div>
-      </article>
-
-      <!-- 11: FinCore Digital Banking Platform (Fintech - Core Banking) -->
-      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="FinCore Digital Banking Suite" data-client="FinCore Global Bank" data-year="2025" data-roi="+38% Task Velocity" data-cat-label="Fintech · Enterprise Core Banking" data-challenge="Legacy retail and corporate banking portals suffered from fragmented accounts, complex wire approval chains, and unintuitive multi-currency wallets." data-solution="Architected a unified digital banking experience with real-time liquidity trends, automated card issuance, tiered approval workflows, and audit-ready accounting ledgers." data-tech="React · TypeScript · Tailwind CSS · Chart.js · Financial Design Tokens">
+      <!-- 09: FastPay Mobile Digital Wallet & Card Suite (App Design) -->
+      <article class="showcase-stacked-item work-item" data-category="app-design" data-title="FastPay Mobile Digital Wallet" data-client="FastPay (Iraq &amp; Kurdistan)" data-year="2025" data-roi="1.2M+ Active Wallets" data-cat-label="App Design · Fintech &amp; Digital Wallet" data-challenge="Cash-dominant region required an accessible, multi-lingual digital wallet with seamless Mastercard issuance, P2P transfers, and QR merchant checkout." data-solution="Designed an ergonomic mobile wallet interface with biometric security, instant IQD/USD currency conversion, and thumb-zone optimized QR pay." data-tech="Flutter · Kotlin · Swift · Biometric Auth · Mastercard API · Microservices">
         <div class="showcase-figure-wrap">
           <div class="ratio-box" style="aspect-ratio: 16 / 9;">
-            <img src="/src/assets/images/fintech_banking_core_1791906391305.jpg" alt="FinCore Digital Banking Suite — Core Banking & Cashflow Management" loading="lazy" referrerpolicy="no-referrer" />
+            <img src="/src/assets/images/fastpay_wallet_app_1792425711818.jpg" alt="FastPay Mobile Digital Wallet — Cashless Payment & Mastercard Ecosystem" loading="lazy" referrerpolicy="no-referrer" />
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">+38% Velocity</span>
-              <span class="work-roi-pill metric-success-pill">Instant Multi-Currency</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for FinCore Digital Banking Suite">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for FinCore Digital Banking Suite">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for FinCore Digital Banking Suite">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
-              <h2 class="showcase-item-heading">FinCore Digital Banking Suite</h2>
-              <p class="work-medium">Enterprise Cashflow, Multi-Currency Wallets &amp; Virtual Card Issuance</p>
+              <h2 class="showcase-item-heading">FastPay Mobile Digital Wallet &amp; Cards</h2>
+              <p class="work-medium">Cashless Mobile Financial Ecosystem, Virtual Mastercard &amp; QR Payments</p>
             </div>
             <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">Enterprise core banking portal serving modern businesses and high-net-worth customers. Consolidates global USD/EUR/GBP treasury balances, dynamic cashflow projections, and instant virtual debit card issuance into a unified, zero-friction interface.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">1.2M+ Wallets</span>
+              <span class="work-roi-pill metric-success-pill">Instant QR Pay</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for FastPay Mobile Digital Wallet">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for FastPay Mobile Digital Wallet">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for FastPay Mobile Digital Wallet">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for FastPay Mobile Digital Wallet">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://www.fast-pay.iq/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit FastPay Official Platform">
+                    <span>Live Site</span>
+                    <span class="overflow-tag">Visit ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
-      <!-- 12: AuraPay Mobile Financial Services (MFS) Wallet -->
-      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="AuraPay Mobile Financial Ecosystem" data-client="Aura Telecom &amp; Fintech" data-year="2025" data-roi="12M+ Active Wallets" data-cat-label="Fintech · Mobile Financial Services (MFS)" data-challenge="First-time mobile money and unbanked users faced cognitive overload and high transaction drop-off with QR scanning, merchant payments, and micro-savings." data-solution="Engineered an inclusive, ergonomic mobile wallet with 1-tap P2P transfers, high-contrast QR merchant checkout, biometric security verification, and automated micro-savings yield vaults." data-tech="React Native · SwiftUI · Kotlin · Micro-Interactions · Biometrics API">
+      <!-- 10: MyPeople Global Cultural Community & Social Discovery (App Design) -->
+      <article class="showcase-stacked-item work-item" data-category="app-design" data-title="MyPeople Global Community App" data-client="MyPeople Earth" data-year="2025" data-roi="+185% Community Engagement" data-cat-label="App Design · Social Discovery &amp; Community" data-challenge="Expats, cultural enthusiasts, and travelers lacked a dedicated social app for authentic intercultural events, community discussions, and shared heritage discovery." data-solution="Architected an intuitive global feed and interactive discovery map pairing local cultural celebrations with interest-based micro-communities." data-tech="React Native · TypeScript · Mapbox SDK · Cloudinary · Firebase RTDB">
         <div class="showcase-figure-wrap">
           <div class="ratio-box" style="aspect-ratio: 16 / 9;">
-            <img src="/src/assets/images/mfs_mobile_wallet_1791906391496.jpg" alt="AuraPay Mobile Financial Ecosystem — MFS App & QR Payments" loading="lazy" referrerpolicy="no-referrer" />
+            <img src="/src/assets/images/mypeople_community_app_1792425725637.jpg" alt="MyPeople Global Community App — Cultural Discovery & Interest Groups" loading="lazy" referrerpolicy="no-referrer" />
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">12M+ Users</span>
-              <span class="work-roi-pill metric-success-pill">1-Tap P2P Transfers</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for AuraPay Mobile Financial Ecosystem">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for AuraPay Mobile Financial Ecosystem">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for AuraPay Mobile Financial Ecosystem">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
-              <h2 class="showcase-item-heading">AuraPay Mobile Financial Ecosystem</h2>
-              <p class="work-medium">Next-Gen MFS Wallet, Instant P2P Transfers &amp; QR Payments</p>
+              <h2 class="showcase-item-heading">MyPeople Global Cultural Community</h2>
+              <p class="work-medium">Intercultural Social Network, Global Events &amp; Group Discovery</p>
             </div>
             <span class="showcase-item-year">2025</span>
           </div>
-          <p class="showcase-item-desc">High-scale mobile financial services (MFS) application empowering millions with seamless digital payments. Features thumb-zone optimized QR merchant pay, contactless tap, peer-to-peer transfers, and high-yield micro-investment vaults with biometric authentication.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">+185% Engagement</span>
+              <span class="work-roi-pill metric-success-pill">Global Map Discovery</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for MyPeople Global Community App">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for MyPeople Global Community App">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for MyPeople Global Community App">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for MyPeople Global Community App">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=earth.mypeople&amp;hl=en" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="View MyPeople on Google Play Store">
+                    <span>Google Play</span>
+                    <span class="overflow-tag">Store ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
-      <!-- 13: PayFast Developer Payment Gateway & Orchestrator -->
-      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="PayFast Multi-Rail Payment Gateway" data-client="PayFast Global Infrastructure" data-year="2024" data-roi="99.4% Auth Rate" data-cat-label="Fintech · Payment Gateway &amp; Orchestration" data-challenge="Merchants experienced payment churn, steep cross-border interchange fees, and rigid checkout interfaces that failed on mobile devices." data-solution="Created an intelligent payment orchestration portal featuring visual multi-rail routing (Stripe, Adyen, local APMs), conversion-boosted embeddable checkout sheets, and real-time fraud scoring telemetry." data-tech="TypeScript · Next.js · Canvas Visualizer · Webhooks · PCI-DSS Compliant UI">
+      <!-- 11: Employee Buddy IoT & Smart Office Enterprise App (App Design) -->
+      <article class="showcase-stacked-item work-item" data-category="app-design" data-title="Employee Buddy IoT Smart Office" data-client="SSL Wireless Enterprise" data-year="2024" data-roi="99.2% Attendance Compliance" data-cat-label="App Design · IoT &amp; Enterprise Workplace" data-challenge="Enterprise corporations experienced long lines for biometric punch clocks, inefficient meeting room hoarding, and manual HVAC/lighting overhead." data-solution="Designed an all-in-one corporate companion with geofenced mobile attendance, IoT room environmental controls, and hot-desk reservation." data-tech="Android · Kotlin · IoT MQTT Protocols · BLE Beacons · REST API">
         <div class="showcase-figure-wrap">
           <div class="ratio-box" style="aspect-ratio: 16 / 9;">
-            <img src="/src/assets/images/payment_gateway_checkout_1791906391666.jpg" alt="PayFast Multi-Rail Payment Gateway — Merchant Checkout & Routing" loading="lazy" referrerpolicy="no-referrer" />
+            <img src="/src/assets/images/employee_buddy_iot_1792425743261.jpg" alt="Employee Buddy IoT Smart Office — Biometric Attendance & Workplace Controls" loading="lazy" referrerpolicy="no-referrer" />
           </div>
         </div>
         <div class="showcase-caption-block">
-          <div class="showcase-tags-line">
-            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
-              <span class="work-roi-pill">99.4% Auth Rate</span>
-              <span class="work-roi-pill metric-success-pill">-15% Fee Reduction</span>
-            </div>
-            <div class="showcase-actions-group">
-            <button class="quick-brief-btn" type="button" aria-label="Open Case Study for PayFast Multi-Rail Payment Gateway">
-              <span>Case Study</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </button>
-            <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="showcase-action-link" aria-label="View in Figma for PayFast Multi-Rail Payment Gateway">
-              <span>View in Figma</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for PayFast Multi-Rail Payment Gateway">
-              <span>View Prototype</span>
-              <span class="arrow-diag" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          </div>
           <div class="showcase-title-row">
             <div>
-              <h2 class="showcase-item-heading">PayFast Multi-Rail Gateway &amp; Orchestrator</h2>
-              <p class="work-medium">Smart Multi-Rail Routing, Embeddable Checkout &amp; Fraud Telemetry</p>
+              <h2 class="showcase-item-heading">Employee Buddy IoT &amp; Smart Office</h2>
+              <p class="work-medium">Corporate Workplace Automation, Biometrics &amp; Facility Controls</p>
             </div>
             <span class="showcase-item-year">2024</span>
           </div>
-          <p class="showcase-item-desc">Developer-first payment gateway management and merchant checkout architecture. Empowers e-commerce platforms to dynamically route transactions between global processors, lower payment decline rates, and render high-converting embeddable payment sheets.</p>
-          <button class="showcase-desc-toggle" type="button" aria-expanded="false">
-            <span class="toggle-text">Show more</span>
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">99.2% Compliance</span>
+              <span class="work-roi-pill metric-success-pill">IoT Room Controls</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Employee Buddy IoT Smart Office">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Employee Buddy IoT Smart Office">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Employee Buddy IoT Smart Office">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Employee Buddy IoT Smart Office">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.sslwireless.iot_smartoffice&amp;hl=en" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="View Employee Buddy on Google Play Store">
+                    <span>Google Play</span>
+                    <span class="overflow-tag">Store ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12: BASIC Bank Magpie Mobile Banking App (App Design) -->
+      <article class="showcase-stacked-item work-item" data-category="app-design" data-title="BASIC Bank Magpie Mobile Banking" data-client="BASIC Bank PLC" data-year="2024" data-roi="Zero-Friction Banking" data-cat-label="App Design · Mobile Banking &amp; Fintech" data-challenge="State-owned bank customers encountered cumbersome in-branch transactions, legacy paperwork, and slow fund transfer verification." data-solution="Engineered the Magpie mobile banking experience: unified balance cockpits, two-factor OTP fund transfers to NPSB/BEFTN rails, and 1-tap utility bill payments." data-tech="Android · Java/Kotlin · Secure Banking SDK · SSL Encryption · ISO 8583">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/basic_bank_magpie_1792425761229.jpg" alt="BASIC Bank Magpie Mobile Banking — Digital Fund Transfers & Utility Hub" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">BASIC Bank Magpie Mobile Banking</h2>
+              <p class="work-medium">National Banking Portal, 2FA Fund Transfers &amp; Bill Hub</p>
+            </div>
+            <span class="showcase-item-year">2024</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">Zero-Friction Banking</span>
+              <span class="work-roi-pill metric-success-pill">Instant OTP Transfer</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for BASIC Bank Magpie Mobile Banking">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for BASIC Bank Magpie Mobile Banking">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for BASIC Bank Magpie Mobile Banking">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for BASIC Bank Magpie Mobile Banking">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.basicbanklimited.magpie&amp;hl=en" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="View Magpie on Google Play Store">
+                    <span>Google Play</span>
+                    <span class="overflow-tag">Store ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 13: Bondhu Chula Clean Energy & Climate Impact App (App Design) -->
+      <article class="showcase-stacked-item work-item" data-category="app-design" data-title="Bondhu Chula Clean Energy App" data-client="Bangladesh Bondhu Foundation (BBF / GIZ)" data-year="2024" data-roi="5M+ Stoves Monitored" data-cat-label="App Design · Clean Tech &amp; Sustainability" data-challenge="Rural households and green energy technicians needed an accessible mobile tool for stove registration, carbon credit calculation, and maintenance dispatching." data-solution="Crafted an accessible mobile app with pictorial navigation, offline field data sync, carbon emission reduction charts, and on-demand technician bookings." data-tech="Android · SQLite Offline First · REST API · GIS Mapping · Multilingual Bangla/EN">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/bandhu_chula_app_1792425776580.jpg" alt="Bondhu Chula Clean Energy App — Climate Impact & Carbon Tracking" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">Bondhu Chula Clean Energy &amp; Climate App</h2>
+              <p class="work-medium">Nationwide Eco-Stove Management &amp; Carbon Credit Verification</p>
+            </div>
+            <span class="showcase-item-year">2024</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">5M+ Monitored</span>
+              <span class="work-roi-pill metric-success-pill">Carbon Credit Verification</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Bondhu Chula Clean Energy App">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Bondhu Chula Clean Energy App">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Bondhu Chula Clean Energy App">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Bondhu Chula Clean Energy App">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.sslwireless.bandhuchula&amp;hl=en" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="View Bondhu Chula on Google Play Store">
+                    <span>Google Play</span>
+                    <span class="overflow-tag">Store ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14: Bangla QR National Interoperable Payment App (App Design) -->
+      <article class="showcase-stacked-item work-item" data-category="app-design" data-title="Bangla QR Interoperable Mobile Payment" data-client="SSLCommerz / Bangladesh Bank" data-year="2025" data-roi="National Standard QR" data-cat-label="App Design · Interoperable Digital Payments" data-challenge="Merchants and consumers juggled dozens of incompatible banking and MFS QR codes at physical retail points-of-sale." data-solution="Designed the unified Bangla QR merchant and payer interface, allowing customers from any bank or mobile wallet to scan and pay instantly with sub-second feedback." data-tech="EMVCo QR Standards · React Native · Dynamic Routing · Bank Settlement APIs">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/bangla_qr_merchant_1792425793440.jpg" alt="Bangla QR National Interoperable Payment App — Merchant & Consumer Payments" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">Bangla QR Interoperable Payment Ecosystem</h2>
+              <p class="work-medium">National Standard Contactless QR &amp; Multi-Bank Merchant Pay</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">National Standard</span>
+              <span class="work-roi-pill metric-success-pill">Universal Bank Pay</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Bangla QR Interoperable Mobile Payment">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Bangla QR Interoperable Mobile Payment">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Bangla QR Interoperable Mobile Payment">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Bangla QR Interoperable Mobile Payment">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://sslcommerz.com/bangla-qr/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit SSLCommerz Bangla QR Portal">
+                    <span>Official Portal</span>
+                    <span class="overflow-tag">Visit ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 15: SSLCOMMERZ Multi-Channel Payment Gateway Aggregator (Fintech) -->
+      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="SSLCOMMERZ Payment Gateway Aggregator" data-client="SSLCOMMERZ / Bangladesh Bank" data-year="2025" data-roi="18,000+ Active Merchants" data-cat-label="Fintech · Payment Gateway &amp; Aggregator" data-challenge="E-commerce enterprises in South Asia dealt with fragmented banking integrations, manual settlement reconciliation, and high transaction failure rates on checkout." data-solution="Architected the flagship SSLCOMMERZ multi-channel gateway engine with automated T+1 settlement cycles, 30+ card &amp; MFS payment methods, and real-time fraud mitigation." data-tech="React · TypeScript · Node.js · PCI-DSS Level 1 · REST API · Webhooks">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/sslcommerz_gateway_ui_1792431702968.jpg" alt="SSLCOMMERZ Multi-Channel Payment Gateway Aggregator — Merchant Dashboard & Analytics" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">SSLCOMMERZ Payment Gateway Aggregator</h2>
+              <p class="work-medium">National Payment System Operator, Multi-Channel Checkout &amp; Settlements</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">18k+ Merchants</span>
+              <span class="work-roi-pill metric-success-pill">Automated T+1 Payouts</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for SSLCOMMERZ Payment Gateway Aggregator">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for SSLCOMMERZ Payment Gateway Aggregator">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for SSLCOMMERZ Payment Gateway Aggregator">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for SSLCOMMERZ Payment Gateway Aggregator">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://sslcommerz.com/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit SSLCOMMERZ Platform">
+                    <span>Live Site</span>
+                    <span class="overflow-tag">Visit ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 16: BASIC Bank iBank Internet Banking Portal (Fintech) -->
+      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="BASIC Bank iBank Internet Banking" data-client="BASIC Bank PLC" data-year="2025" data-roi="100% Digital NPSB/EFTN" data-cat-label="Fintech · Internet Banking &amp; Treasury" data-challenge="Corporate and retail banking clients were constrained by in-branch queues, cumbersome paper fund transfers, and delayed statement reconciliation." data-solution="Engineered the iBank web portal featuring real-time multi-account summaries, instant NPSB, BEFTN &amp; RTGS transfer pipelines, and automated utility bill payments." data-tech="Angular · TypeScript · Java Spring Boot · Oracle Core Banking · 2FA HSM Security">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/basic_bank_ibank_ui_1792431717825.jpg" alt="BASIC Bank iBank Internet Banking Portal — Fund Transfers & Accounts" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">BASIC Bank iBank Internet Banking</h2>
+              <p class="work-medium">Corporate &amp; Retail Internet Banking, RTGS/EFTN Transfers &amp; Statements</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">Zero-Friction Banking</span>
+              <span class="work-roi-pill metric-success-pill">Instant RTGS &amp; NPSB</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for BASIC Bank iBank Internet Banking">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for BASIC Bank iBank Internet Banking">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for BASIC Bank iBank Internet Banking">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for BASIC Bank iBank Internet Banking">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://ibank.basicbanklimited.com/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit BASIC Bank iBank Portal">
+                    <span>Live Site</span>
+                    <span class="overflow-tag">Visit ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 17: Join SSLCOMMERZ Merchant Onboarding Portal (Fintech) -->
+      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="Join SSLCOMMERZ Merchant Onboarding" data-client="SSLCOMMERZ Business" data-year="2025" data-roi="15-Min Digital Onboarding" data-cat-label="Fintech · Merchant Onboarding &amp; KYC" data-challenge="New e-commerce merchants faced a multi-week onboarding cycle with physical paperwork, manual KYC verifications, and opaque fee tiering." data-solution="Constructed a self-service merchant registration portal featuring progressive KYC uploads, interactive pricing calculators, and immediate sandbox API key generation." data-tech="Next.js · React · OCR Document Validation · Tailwind CSS · REST API">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/sslcommerz_join_onboarding_1792431731517.jpg" alt="Join SSLCOMMERZ Merchant Onboarding Portal — Digital KYC & API Provisioning" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">Join SSLCOMMERZ Merchant Onboarding</h2>
+              <p class="work-medium">Digital KYC Verification, Automated Registration &amp; API Key Provisioning</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">15-Min Onboarding</span>
+              <span class="work-roi-pill metric-success-pill">Instant Sandbox Keys</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for Join SSLCOMMERZ Merchant Onboarding">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for Join SSLCOMMERZ Merchant Onboarding">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for Join SSLCOMMERZ Merchant Onboarding">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for Join SSLCOMMERZ Merchant Onboarding">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://join.sslcommerz.com/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit Join SSLCOMMERZ Portal">
+                    <span>Live Site</span>
+                    <span class="overflow-tag">Visit ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 18: FastPay Mobile Wallet Ecosystem (Fintech) -->
+      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="FastPay Kurdistan Digital Wallet" data-client="FastPay (Iraq &amp; Kurdistan)" data-year="2025" data-roi="PA-DSS Certified Security" data-cat-label="Fintech · Mobile Digital Wallet &amp; Cards" data-challenge="Middle Eastern regional consumers needed a reliable, certified cashless payment infrastructure supporting cross-border Mastercards and local merchant acceptance." data-solution="Designed the comprehensive FastPay financial ecosystem: zero-fee utility payments, localized Kurdish/Arabic/English interfaces, and contactless QR checkout." data-tech="Flutter · Kotlin · Swift · Mastercard Network · ISO 8583 · Microservices">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/fastpay_wallet_app_1792425711818.jpg" alt="FastPay Kurdistan Digital Wallet — Digital Payments & Mastercard" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">FastPay Kurdistan Digital Wallet</h2>
+              <p class="work-medium">Digital Cashless Ecosystem, Card Issuance &amp; Cross-Border Payments</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">PA-DSS Certified</span>
+              <span class="work-roi-pill metric-success-pill">Instant IQD/USD Exchange</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for FastPay Kurdistan Digital Wallet">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for FastPay Kurdistan Digital Wallet">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for FastPay Kurdistan Digital Wallet">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for FastPay Kurdistan Digital Wallet">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://www.fast-pay.iq/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit FastPay Official Platform">
+                    <span>Live Site</span>
+                    <span class="overflow-tag">Visit ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 19: The Premier Bank Corporate Banking Suite (Fintech) -->
+      <article class="showcase-stacked-item work-item" data-category="fintech" data-title="The Premier Bank Corporate Banking" data-client="The Premier Bank PLC" data-year="2025" data-roi="$450M+ Managed Cashflow" data-cat-label="Fintech · Enterprise Corporate Banking" data-challenge="Large-scale corporate conglomerates required centralized cash management, syndicated project loan tracking, nationwide collection booth integration, and bulk corporate payroll." data-solution="Architected the modern Corporate Banking terminal: multi-tier approval matrix, automated bulk disbursement, trade finance L/C tracking, and real-time treasury telemetry." data-tech="React · TypeScript · Tailwind CSS · High-Density Tables · Enterprise Core Banking API">
+        <div class="showcase-figure-wrap">
+          <div class="ratio-box" style="aspect-ratio: 16 / 9;">
+            <img src="/src/assets/images/premier_bank_corporate_1792431748813.jpg" alt="The Premier Bank Corporate Banking — Cash Management & Project Loans" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <div class="showcase-caption-block">
+          <div class="showcase-title-row">
+            <div>
+              <h2 class="showcase-item-heading">The Premier Bank Corporate Banking Suite</h2>
+              <p class="work-medium">Enterprise Cash Management, Syndicated Project Financing &amp; Trade L/Cs</p>
+            </div>
+            <span class="showcase-item-year">2025</span>
+          </div>
+          <div class="showcase-tags-line">
+            <div style="display:flex; align-items:center; gap: 0.65rem; flex-wrap:wrap;">
+              <span class="work-roi-pill">$450M+ Volume</span>
+              <span class="work-roi-pill metric-success-pill">Multi-Tier Approvals</span>
+            </div>
+            <div class="showcase-actions-group">
+              <button class="quick-brief-btn" type="button" aria-label="Open Case Study for The Premier Bank Corporate Banking">
+                <span>Case Study</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </button>
+              <a href="https://www.figma.com/proto/preview" target="_blank" rel="noreferrer noopener" class="showcase-action-link action-proto" aria-label="View Prototype for The Premier Bank Corporate Banking">
+                <span>Prototype</span>
+                <span class="arrow-diag" aria-hidden="true">↗</span>
+              </a>
+              <div class="showcase-overflow-wrap">
+                <button class="showcase-overflow-btn" type="button" aria-expanded="false" aria-label="More actions for The Premier Bank Corporate Banking">
+                  <span>More Links</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="showcase-overflow-dropdown" role="menu">
+                  <a href="https://www.figma.com/@aam_uiux" target="_blank" rel="noreferrer noopener" class="overflow-item-link" aria-label="View in Figma for The Premier Bank Corporate Banking">
+                    <span>View in Figma</span>
+                    <span class="overflow-tag">Source ↗</span>
+                  </a>
+                  <a href="https://thepremierbankplc.com/corporate-banking/" target="_blank" rel="noreferrer noopener" class="overflow-item-link live-link" aria-label="Visit The Premier Bank Corporate Banking">
+                    <span>Live Site</span>
+                    <span class="overflow-tag">Visit ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -5779,14 +6346,14 @@
       'all': {
         title: 'All Architecture Archetypes',
         kicker: 'Showcase Feed · Flagship Works',
-        count: '13 Verified Projects',
-        desc: 'Curated collection of 13 enterprise platforms, high-throughput cockpits, fintech banking suites, editorial landing pages, and native mobile companions engineered for ROI.'
+        count: '21 Verified Projects',
+        desc: 'Curated collection of 21 enterprise SaaS platforms, high-throughput cockpits, fintech banking suites, editorial landing pages, and native mobile apps engineered for ROI.'
       },
       'saas': {
         title: 'SaaS Platforms',
         kicker: 'Archetype 01 · B2B Platforms',
-        count: '3 Flagship Platforms',
-        desc: 'Enterprise multi-tenant web applications, generative AI video workflows, and visual node-graph orchestration canvases designed for high-retention velocity.'
+        count: '5 Flagship Platforms',
+        desc: 'Enterprise multi-tenant platforms, intelligent document AI, hybrid workplace hubs, CPG trade portals, and automated process orchestration suites designed for operational velocity.'
       },
       'dashboard': {
         title: 'Dashboards & Cockpits',
@@ -5797,8 +6364,8 @@
       'fintech': {
         title: 'Fintech, Banking & MFS',
         kicker: 'Archetype 03 · Financial Infrastructure & Payments',
-        count: '3 Verified Platforms',
-        desc: 'Next-generation digital banking suites, high-scale Mobile Financial Services (MFS) wallets, and intelligent multi-rail developer payment gateways with friction-free checkout.'
+        count: '5 Verified Platforms',
+        desc: 'National payment gateway aggregators, state internet banking portals, merchant KYC onboarding flows, cross-border digital wallets, and corporate cash management suites.'
       },
       'landing-page': {
         title: 'Editorial Landing Pages',
@@ -5809,8 +6376,8 @@
       'app-design': {
         title: 'Mobile App Design',
         kicker: 'Archetype 05 · Native iOS & Android Systems',
-        count: '2 Mobile Products',
-        desc: 'Mobile-first fintech wealth companions and on-the-go generative AI production suites built with ergonomic thumb-reach flows.'
+        count: '6 Mobile Products',
+        desc: 'High-scale digital wallets, cultural social networks, IoT smart offices, mobile banking portals, clean-energy tracking apps, and national QR payment ecosystems.'
       }
     };
 
@@ -6236,6 +6803,40 @@
       });
     });
 
+    // Attach overflow dropdown menu toggles (Hick's Law - Secondary Actions)
+    document.querySelectorAll('.showcase-overflow-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wrap = btn.closest('.showcase-overflow-wrap');
+        if (!wrap) return;
+        const isOpen = wrap.classList.contains('is-open');
+
+        // Close any other open dropdowns first
+        document.querySelectorAll('.showcase-overflow-wrap.is-open').forEach((other) => {
+          if (other !== wrap) {
+            other.classList.remove('is-open');
+            const otherBtn = other.querySelector('.showcase-overflow-btn');
+            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle this dropdown
+        wrap.classList.toggle('is-open', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      });
+    });
+
+    // Close overflow dropdowns on click outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.showcase-overflow-wrap')) {
+        document.querySelectorAll('.showcase-overflow-wrap.is-open').forEach((wrap) => {
+          wrap.classList.remove('is-open');
+          const btn = wrap.querySelector('.showcase-overflow-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
     if (briefModalClose) briefModalClose.addEventListener('click', closeBriefModal);
     if (briefModal) {
       briefModal.addEventListener('click', (e) => {
@@ -6245,6 +6846,11 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        document.querySelectorAll('.showcase-overflow-wrap.is-open').forEach((wrap) => {
+          wrap.classList.remove('is-open');
+          const btn = wrap.querySelector('.showcase-overflow-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
         if (briefModal && briefModal.classList.contains('is-active')) closeBriefModal();
         if (bookingModal && bookingModal.classList.contains('is-active')) closeBookingModal();
       }
